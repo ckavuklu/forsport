@@ -1,0 +1,49 @@
+'{
+"points":
+[
+{
+"accessible_wheelchair":true,
+"address":"925 E Plaza Blvd",
+"alcohol": true,
+"alcohol_beer_wine":true,
+"attire":"casual",
+"category":"Food & Beverage > Restaurants > Sushi",
+"country":"US",
+"cuisine":"Japanese, Sushi",
+"factual_id":"317ced43-30c4-4e70-a3bd-3a5db4e45d88",
+"groups_goodfor":true,
+"kids_goodfor":true,
+"latitude":32.677301,
+"locality":"National City",
+"longitude":-117.095916,
+"meal_deliver":false,
+"meal_dinner":true,
+"meal_lunch":true,
+"meal_takeout":true,
+"name":"Besiktas - Galatasaray",
+"parking":true,
+"parking_lot":true,
+"payment_cashonly":false,
+"postcode":"91950",
+"price":2,
+"rating":3.5,
+"region":"CA",
+"reservations":true,
+"seating_outdoor": false,
+"status":"1",
+"tel":"(619) 474-2918",
+"$distance":862.674,
+"travel_time_seconds":995,
+"travel_time_formatted":"17 mins",
+"distance":"0.54"
+}
+],
+"polygons":
+[
+[[32.6
+58844,-117.095734],[32.664352,-117.110397],[32.665211,-117.110733],[32.668373,-1
+17.109688],[32.672939,-117.106956],[32.682457,-117.100403],[32.680431,-117.09055
+3],[32.675617,-117.080437],[32.6740959,-117.0789602],[32.672218,-117.078873],[32
+.660557,-117.08622],[32.6571542,-117.0905529],[32.658844,-117.095734]]
+]
+}'
