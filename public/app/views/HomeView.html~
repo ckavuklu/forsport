@@ -11,7 +11,7 @@
 
             <div style="text-align: center;">
                 <p>
-                    <button id="selectCuisine" class="btn btn-info">Select A Sport </button>
+                    <button id="selectCuisine" class="btn btn-info">Select A Team </button>
                 </p>
 
                 <h4 style="text-align: center">--OR--</h4>

@@ -298,11 +298,11 @@ body {
 
 
 .header {
-    background: url('images/lettuce.jpg');
+    background: url('images/lettuce.jpg') no-repeat;
 }
 
 .header h1 {
-    background: url('images/lettuce.jpg');
+    background: url('images/lettuce.jpg') no-repeat;
     margin:0px;
     padding:10px 10px;
     color: white;

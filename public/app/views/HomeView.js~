@@ -2,7 +2,7 @@ templates.homeView = "app/views/HomeView.html";
 
 window.HomeView = Backbone.View.extend({
 
-    title: "GameSquare",
+    title: "Walkable Restaurants",
     destructionPolicy:'never',
 
     initialize: function(options) {
