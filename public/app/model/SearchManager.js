@@ -1,7 +1,7 @@
 
 window.SearchManager = {
 
-    apiUrl:"http://127.0.0.1:3000/restaurants-api?",
+    apiUrl:"http://127.0.0.1:3000/sportevents?",
     
     search:function (searchString, successCallback, errorCallback) {
         var searchURL = this.apiUrl + "q=" + encodeURIComponent(searchString) + "&ll=" + /*window.GeoWatcher.position.latitude*/ "32.66962" + "," + /*window.GeoWatcher.position.longitude*/ "-117.094619" + "&d=" + new Date().getTime();

@@ -17,15 +17,15 @@ window.SearchManager = {
                     successCallback( result );
                 }
             },
-            error:function(error){
+            /*error:function(error){
             	  console.log("Client Error2 " + error);
                 if ( errorCallback ){
                 	  console.log("Calling Error Callback " + result.status + ' ' + result.statusText);
                     errorCallback( error );
                 }
-            }
+            }*/
             
-            /*error: function(jqXHR, exception) {
+            error: function(jqXHR, exception) {
             if (jqXHR.status === 0) {
                 alert('Not connect.\n Verify Network.');
             } else if (jqXHR.status == 404) {
@@ -41,7 +41,7 @@ window.SearchManager = {
                 alert('Ajax request aborted.');
             } else {
                 alert('Uncaught Error.\n' + jqXHR.responseText);
-            }*/
+            }
         }
 
         });

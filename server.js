@@ -3,8 +3,9 @@ url = require("url"),
 path = require("path"),
 fs = require("fs")
 var express = require('express');
-var app = express();
+sportevents = require('./routes/sportevents.js');
 
+var app = express();
 var request = require('request');
 
 //factual nodejs api here: http://blog.factual.com/factual-node-js-driver
@@ -37,10 +38,12 @@ app.configure(function(){
   app.use(app.router);
 });
 
-/*
-app.get('/', function(request, response){
-   res.send( "Hello, use the API or go away!" );
-});*/
+app.get('/sportevents', sportevents.findAllSportEvents);
+app.get('/sportevents/:id', sportevents.findById);
+//app.post('/sportevents', sportevents.addSportEvent);
+app.post('/sportevents/all', sportevents.populateSportEvents);
+app.put('/sportevents/:id', sportevents.updateSportEvent);
+app.delete('/sportevents/:id', sportevents.deleteSportEvent);
 
 app.get('/restaurants-api', function(req, res){
 
@@ -61,207 +64,27 @@ app.get('/restaurants-api', function(req, res){
         writeEmptyResponse( res );
         return;
     }
-   
-    //lat = parseFloat("32.66962");
-    //lon = parseFloat("-117.094619");
 
     //http://api.v3.factual.com/t/restaurants-us
     //get source data points from factual
     
     factual.get('/t/restaurants-us',{q:q, sort:"$distance:asc", limit:50, geo:{"$circle":{"$center":[lat,lon],"$meters":FACTUAL_RADIUS_METERS}}, "include_count":"true"}, function (factual_error, factual_res) {
-   /* 
-        if (!factual_res.data) {
-            writeEmptyResponse( res );
-            return;
-        }
-
-        var data = factual_res.data;
-        var points = [];
-        var map = {};
-
-        for (var x=0; x<data.length; x++) {
-            var item = data[x];
-            points.push({
-                id:  item.factual_id,
-                lat: item.latitude,
-                lng: item.longitude
-            });
-            map[item.factual_id] = item;
-        }
-        //console.log( points );
-
-
-        if ( factual_res.data.length > 0 ) {
-
-            var params = {
-                "format": "json",
-                "origin": {"lat": lat, "lng": lon},
-                "travel_time": MAX_WALK_TIME_SECONDS,
-                "mode": "walking_train",
-                "points": points
+    	
+    	     var pointt = sportevents.getAllSportEvents();
+    	     var polyg = sportevents.getPolygonArea();
+    	     
+           var result = {                        
+				    points: pointt,              
+				    polygons: polyg
             }
 
-            var headers = {
-                "X-app-id": TT_APP_ID,
-                "X-app-key": TT_APP_KEY
-            }
-
-
-	    
-            //rank by walking distance (time in seconds)
-            request({url:TT_DATA_URL, method:"POST", json:params, headers:headers}, function (tt_error, tt_res, tt_body) {
-
-                var output = [];
-
-                if (!tt_error && tt_res.statusCode == 200) {
-
-                    var result = eval(tt_body);
-
-                    if ( result.length > 0 ){
-                        for (var x=0; x<result.length; x++) {
-                            var item = result[x];
-                            for ( var key in item ){
-                                var target = map[key];
-                                if ( target ){
-                                    target[ "travel_time_seconds"] = item[key];
-                                    target[ "travel_time_formatted"] = formatTime( item[key] );
-                                    target[ "distance"] = formatDistance( target["$distance"] );
-                                    output.push(target);
-                                }
-                            }
-                        }
-
-                        output = output.sort(function(a,b){return a.travel_time_seconds - b.travel_time_seconds});
-
-                        delete params.points;
-                        request({url:TT_MAPS_URL, method:"POST", json:params, headers:headers}, function (ttt_error, ttt_res, ttt_body) {
-
-                            if (!tt_error && tt_res.statusCode == 200) {
-                                var poly = eval(ttt_body);*/
-                                var result = {
-                                    //points: output,
-				    points: [
-{
-"accessible_wheelchair":true,
-"address":"925 E Plaza Blvd",
-"alcohol": true,
-"alcohol_beer_wine":true,
-"attire":"casual",
-"category":"Food & Beverage > Restaurants > Sushi",
-"country":"US",
-"cuisine":"Japanese, Sushi",
-"factual_id":"317ced43-30c4-4e70-a3bd-3a5db4e45d88",
-"groups_goodfor":true,
-"kids_goodfor":true,
-"latitude":41.0392,
-"locality":"National City",
-"longitude":28.9947,
-"meal_deliver":false,
-"meal_dinner":true,
-"meal_lunch":true,
-"meal_takeout":true,
-"name":"Besiktas - Galatasaray",
-"parking":true,
-"parking_lot":true,
-"payment_cashonly":false,
-"postcode":"91950",
-"price":2,
-"rating":3.5,
-"region":"CA",
-"reservations":true,
-"seating_outdoor": false,
-"status":"1",
-"tel":"(619) 474-2918",
-"$distance":862.674,
-"travel_time_seconds":995,
-"travel_time_formatted":"17 mins",
-"distance":"0.54"
-}
-],
-                                    //polygons: poly
-				    polygons: [[[32.658844,-117.095734],[32.664352,-117.110397],[32.665211,-117.110733],[32.668373,-117.109688],[32.672939,-117.106956],[32.682457,-117.100403],[32.680431,-117.090553],[32.675617,-117.080437],[32.6740959,-117.0789602],[32.672218,-117.078873],[32.660557,-117.08622],[32.6571542,-117.0905529],[32.658844,-117.095734]]]
-                                }
-                                console.log("******************************************");
-                                console.log(JSON.stringify(result));
-                                console.log("******************************************");
-                                res.send(JSON.stringify(result));
-/*
-                            }
-                            else  {
-                                writeEmptyResponse( res );
-                                console.log("1 writeEmptyResponse( res )");
-                            }
-                        });
-                    }
-                    else {
-                        writeNonWalkingResponse( data, map, res );
-                                console.log(" 1 writeNonWalkingResponse( data, map, res );");
-                    }
-
-
-                }
-                else  {
-                    writeNonWalkingResponse( data, map, res );
-                                console.log(" 2 writeNonWalkingResponse( data, map, res );");
-                }
-
-            });
-
-        } else {
-            writeEmptyResponse( res );
-                                console.log("1 writeEmptyResponse( res )");
-        }
-*/
+            console.log("******************************************", pointt);
+            console.log(JSON.stringify(result));
+            console.log("******************************************", polyg);
+            res.send(JSON.stringify(result));
     });
 
 
-/*
- var result = {
-				    points: [
-{
-"accessible_wheelchair":true,
-"address":"925 E Plaza Blvd",
-"alcohol": true,
-"alcohol_beer_wine":true,
-"attire":"casual",
-"category":"Food & Beverage > Restaurants > Sushi",
-"country":"US",
-"cuisine":"Japanese, Sushi",
-"factual_id":"317ced43-30c4-4e70-a3bd-3a5db4e45d88",
-"groups_goodfor":true,
-"kids_goodfor":true,
-"latitude":41.0392,
-"locality":"National City",
-"longitude":28.9947,
-"meal_deliver":false,
-"meal_dinner":true,
-"meal_lunch":true,
-"meal_takeout":true,
-"name":"Besiktas - Galatasaray",
-"parking":true,
-"parking_lot":true,
-"payment_cashonly":false,
-"postcode":"91950",
-"price":2,
-"rating":3.5,
-"region":"CA",
-"reservations":true,
-"seating_outdoor": false,
-"status":"1",
-"tel":"(619) 474-2918",
-"$distance":862.674,
-"travel_time_seconds":995,
-"travel_time_formatted":"17 mins",
-"distance":"0.54"
-}
-],
- polygons: [[[32.658844,-117.095734],[32.664352,-117.110397],[32.665211,-117.110733],[32.668373,-117.109688],[32.672939,-117.106956],[32.682457,-117.100403],[32.680431,-117.090553],[32.675617,-117.080437],[32.6740959,-117.0789602],[32.672218,-117.078873],[32.660557,-117.08622],[32.6571542,-117.0905529],[32.658844,-117.095734]]]
-}
-                                console.log("-----------------------------------------");
-                                console.log(JSON.stringify(result));
-                                console.log("------------------------------------------");
-                                res.send(JSON.stringify(result));				
-*/
 });
 
 function writeEmptyResponse( res ) {
