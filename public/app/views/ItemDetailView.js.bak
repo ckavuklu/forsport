@@ -51,14 +51,14 @@ window.ItemDetailView = Backbone.View.extend({
             var osmMapAttr = '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>';
             var osmDataAttr = 'Map data ' + osmMapAttr;
 
-           /* var tileURL = 'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png',
+            var tileURL = 'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png',
                 attribution = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; ' + osmDataAttr,
-                tileLayer = new L.TileLayer(tileURL, {attribution:attribution, subdomains:['a','b','c','d'], minZoom:0, maxZoom:20});*/
+                tileLayer = new L.TileLayer(tileURL, {attribution:attribution, subdomains:['a','b','c','d'], minZoom:0, maxZoom:20});
 
 
- 						 var tileURL = 'http://{s}.tile.cloudmade.com/e6bb863e91f74134a9208e0a5906e719/997/256/{z}/{x}/{y}.png',
+ 						/* var tileURL = 'http://{s}.tile.cloudmade.com/e6bb863e91f74134a9208e0a5906e719/997/256/{z}/{x}/{y}.png',
                 attribution = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors ',
-                tileLayer = new L.TileLayer(tileURL, {attribution:attribution, minZoom:0, maxZoom:20});
+                tileLayer = new L.TileLayer(tileURL, {attribution:attribution, minZoom:0, maxZoom:20});*/
 
 
             map.addLayer(tileLayer);

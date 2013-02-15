@@ -10,7 +10,6 @@ db = new Db('sporteventsdb', server, {safe: true});
 db.open(function(err, db) {
 	console.log("Opening Connection");
 
-
 	if(!err) {
 		console.log("Connected to 'sporteventsdb' database");
 	db.collection('sportevents', {safe:true}, function(err, collection) {

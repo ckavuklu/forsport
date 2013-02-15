@@ -45,47 +45,7 @@ app.post('/sportevents/all', sportevents.populateSportEvents);
 app.put('/sportevents/:id', sportevents.updateSportEvent);
 app.delete('/sportevents/:id', sportevents.deleteSportEvent);
 
-app.get('/restaurants-api', function(req, res){
 
-    var q = req.query["q"];
-    var ll = req.query["ll"];
-    var tokens = ll.split(",");
-    var lat = 0, lon = 0;
-
-    if (tokens.length == 2) {
-
-        //todo, check if valid numbers & within appropriate bounds
-
-        lat = parseFloat(tokens[0]);
-        lon = parseFloat(tokens[1]);
-    }
-    else {
-        //would be better to throw an error, but sending empty response for now
-        writeEmptyResponse( res );
-        return;
-    }
-
-    //http://api.v3.factual.com/t/restaurants-us
-    //get source data points from factual
-    
-    factual.get('/t/restaurants-us',{q:q, sort:"$distance:asc", limit:50, geo:{"$circle":{"$center":[lat,lon],"$meters":FACTUAL_RADIUS_METERS}}, "include_count":"true"}, function (factual_error, factual_res) {
-    	
-    	     var pointt = sportevents.getAllSportEvents();
-    	     var polyg = sportevents.getPolygonArea();
-    	     
-           var result = {                        
-				    points: pointt,              
-				    polygons: polyg
-            }
-
-            console.log("******************************************", pointt);
-            console.log(JSON.stringify(result));
-            console.log("******************************************", polyg);
-            res.send(JSON.stringify(result));
-    });
-
-
-});
 
 function writeEmptyResponse( res ) {
     var result = {

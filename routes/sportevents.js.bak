@@ -206,7 +206,7 @@ exports.populateSportEvents = function(req, res) {
 
 	db.collection('sportevents', function(err, collection) {
 		console.log('Before insertion');
-	collection.insert(sportevents, {safe:true}, function(err, result) {
+	  collection.insert(sportevents, {safe:true}, function(err, result) {
 
 		if(err){
 			console.log(err);
