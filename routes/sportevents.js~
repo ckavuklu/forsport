@@ -12,7 +12,7 @@ db.open(function(err, db) {
 
 	if(!err) {
 		console.log("Connected to 'sporteventsdb' database");
-		db.collection('sportevents', {safe:true}, function(err, collection) {
+	db.collection('sportevents', {safe:true}, function(err, collection) {
 		if (err) {
 			console.log("The 'sportevents' collection doesn't exist. Creating it with sample data...");
 			populateDB();
@@ -54,7 +54,6 @@ exports.findAllSportEvents = function(req, res) {
 			var output = { points : items,
 				polygons:[[[32.658844,-117.095734],[32.664352,-117.110397],[32.665211,-117.110733],[32.668373,-117.109688],[32.672939,-117.106956],[32.682457,-117.100403],[32.680431,-117.090553],[32.675617,-117.080437],[32.6740959,-117.0789602],[32.672218,-117.078873],[32.660557,-117.08622],[32.6571542,-117.0905529],[32.658844,-117.095734]]]
 			}
-			console.log(output);
 			res.send(output);
 		});
 	});
