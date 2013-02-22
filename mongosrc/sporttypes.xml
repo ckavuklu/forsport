@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ISO-8859-9"?>
+<SportTypes>
+	<SportType gsId="1" name="Basketball"/>
+	<SportType gsId="2" name="Football"/>
+</SportTypes>
+
+

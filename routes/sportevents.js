@@ -12,7 +12,7 @@ db.open(function(err, db) {
 
 	if(!err) {
 		console.log("Connected to 'sporteventsdb' database");
-	db.collection('sportevents', {safe:true}, function(err, collection) {
+		db.collection('sportevents', {safe:true}, function(err, collection) {
 		if (err) {
 			console.log("The 'sportevents' collection doesn't exist. Creating it with sample data...");
 			populateDB();

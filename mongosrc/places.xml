@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ISO-8859-9"?>
+<Places>
+	<Place gsId="1" name="Karşıyaka Arena4" latitude="42.090" longitude="26.6767" typeId="1" logos="ksk_arena.jpg"/>
+	<Place gsId="2" name="Telekom Arena4" latitude="40.090" longitude="27.6767" typeId="1" logos="telekom_arena.jpg"/>
+</Places>
+
+

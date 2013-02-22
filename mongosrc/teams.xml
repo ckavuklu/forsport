@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-9"?>
+<Teams>
+<Team gsId="1" name="Pınar Karşıyaka" city_id="35" country_id="90" sporttypeId="2" placeId="1" logos="ksk_basket.png"/>
+<Team gsId="2" name="Türk Telekom" city_id="06" country_id="90" sporttypeId="2" placeId="2" logos="telekom_basket.png"/>
+<Team gsId="3" name="Türk Tuborg" city_id="35" country_id="90" sporttypeId="2" placeId="1" logos="tuborg_basket.png"/>
+</Teams>
+
+
