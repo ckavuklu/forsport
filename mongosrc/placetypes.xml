@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-9"?>
 <PlaceTypes>
-	<PlaceType gsId="1" name="Venue"/>
-	<PlaceType gsId="2" name="Stadium"/>
+	<PlaceType placeTypeId="1" name="Stadium"/>
+	<PlaceType placeTypeId="2" name="Hall"/>
 </PlaceTypes>
 
 

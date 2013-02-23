@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="ISO-8859-9"?>
 <Teams>
-<Team gsId="1" name="Pınar Karşıyaka" city_id="35" country_id="90" sporttypeId="2" placeId="1" logos="ksk_basket.png"/>
-<Team gsId="2" name="Türk Telekom" city_id="06" country_id="90" sporttypeId="2" placeId="2" logos="telekom_basket.png"/>
-<Team gsId="3" name="Türk Tuborg" city_id="35" country_id="90" sporttypeId="2" placeId="1" logos="tuborg_basket.png"/>
+<Team teamId="1" tffTeamId="000084" tffClubId="85" name="AKHİSAR BELEDİYE GENÇLİK VE SPOR" placeId="139" logo="000084_120x120.jpg" sportTypeId="1" website="www.akhisarspor.com" region="IZMIR" city="45" country="90"/>
+<Team teamId="2" tffTeamId="000148" tffClubId="3590" name="BEŞİKTAŞ A.Ş." placeId="85" logo="000148_120x120.jpg" sportTypeId="1" website="www.bjk.com.tr" region="İST./MARMARA" city="34" country="90"/>
+<Team teamId="3" tffTeamId="000159" tffClubId="3601" name="BURSASPOR" placeId="44" logo="000159_120x120.jpg" sportTypeId="1" website="www.bursaspor.org" region="BURSA/MARMARA" city="16" country="90"/>
+<Team teamId="4" tffTeamId="000001" tffClubId="3" name="ESKİŞEHİRSPOR" placeId="66" logo="000001_120x120.jpg" sportTypeId="1" website="www.eskisehirspor.org" region="BURSA/MARMARA" city="26" country="90"/>
+<Team teamId="5" tffTeamId="000150" tffClubId="3592" name="FENERBAHÇE A.Ş." placeId="86" logo="000150_120x120.jpg" sportTypeId="1" website="www.fenerbahce.org" region="İST./MARMARA" city="34" country="90"/>
+<Team teamId="6" tffTeamId="000162" tffClubId="3604" name="GALATASARAY A.Ş." placeId="5018" logo="000162_120x120.jpg" sportTypeId="1" website="www.galatasaray.org" region="İST./MARMARA" city="34" country="90"/>
+<Team teamId="7" tffTeamId="000117" tffClubId="116" name="GAZİANTEPSPOR" placeId="69" logo="000117_120x120.jpg" sportTypeId="1" website="www.gaziantepspor.org.tr" region="ADANA" city="27" country="90"/>
+<Team teamId="8" tffTeamId="000164" tffClubId="3606" name="GENÇLERBİRLİĞİ" placeId="11" logo="000164_120x120.jpg" sportTypeId="1" website="www.genclerbirligi.org.tr" region="ANKARA" city="6" country="90"/>
+<Team teamId="9" tffTeamId="000240" tffClubId="3665" name="İSTANBUL BBSK" placeId="110" logo="000240_120x120.jpg" sportTypeId="1" website="www.istanbulbbsk.org" region="İST./MARMARA" city="34" country="90"/>
+<Team teamId="10" tffTeamId="000002" tffClubId="4" name="KARDEMİR D.Ç. KARABÜKSPOR" placeId="202" logo="000002_120x120.jpg" sportTypeId="1" website="-" region="ANKARA" city="78" country="90"/>
+<Team teamId="11" tffTeamId="000038" tffClubId="39" name="KASIMPAŞA A.Ş." placeId="103" logo="000038_120x120.jpg" sportTypeId="1" website="www.kasimpasaspor.org.tr" region="İST./MARMARA" city="34" country="90"/>
+<Team teamId="12" tffTeamId="000071" tffClubId="72" name="KAYSERİSPOR" placeId="3765" logo="000071_120x120.jpg" sportTypeId="1" website="www.kayserispor.org.tr" region="KAYSERİ" city="38" country="90"/>
+<Team teamId="13" tffTeamId="000051" tffClubId="52" name="MEDİCAL PARK ANTALYASPOR" placeId="5343" logo="000051_120x120.jpg" sportTypeId="1" website="www.antalyaspor.com.tr" region="ANTALYA" city="7" country="90"/>
+<Team teamId="14" tffTeamId="000119" tffClubId="118" name="MERSİN İDMANYURDU" placeId="81" logo="000119_120x120.jpg" sportTypeId="1" website="-" region="ADANA" city="33" country="90"/>
+<Team teamId="15" tffTeamId="000188" tffClubId="3630" name="ORDUSPOR" placeId="153" logo="000188_120x120.jpg" sportTypeId="1" website="www.orduspor.org.tr" region="TRABZON" city="52" country="90"/>
+<Team teamId="16" tffTeamId="000036" tffClubId="37" name="SANİCA BORU ELAZIĞSPOR" placeId="62" logo="000036_120x120.jpg" sportTypeId="1" website="www.elazigspor.org.tr" region="TRABZON" city="23" country="90"/>
+<Team teamId="17" tffTeamId="000073" tffClubId="74" name="SİVASSPOR" placeId="169" logo="000073_120x120.jpg" sportTypeId="1" website="www.sivasspor.org.tr" region="KAYSERİ" city="58" country="90"/>
+<Team teamId="18" tffTeamId="000154" tffClubId="3596" name="TRABZONSPOR A.Ş." placeId="175" logo="000154_120x120.jpg" sportTypeId="1" website="www.trabzonspor.org.tr" region="TRABZON" city="61" country="90"/>
 </Teams>
-
-
