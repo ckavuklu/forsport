@@ -1,8 +1,6 @@
 var fs = require('fs'),
 xml2js = require('xml2js');
 var async = require('async');
-var async2 = require('async');
-var async3 = require('async');
 var sys = require('sys');
 
 var mongoose = require('mongoose'), Schema = mongoose.Schema;
@@ -41,8 +39,7 @@ var placeSchema = new Schema({
 
 
 var teamSchema = new Schema({
-  _id : Schema.ObjectId
-  , teamId: String
+    teamId: String
   , tffTeamId: String
   , tffClubId: String
   , placeId: String
@@ -65,14 +62,13 @@ var organizationSchema = new Schema({
 });
 
 var eventSchema = new Schema({
-    gsId: String
-  , name : String
-  , start_date: Date
-  , end_date: Date
+    week: String
+  , matchId : String
+  , hometeamId: { type: Schema.ObjectId, ref: 'Team' }
+  , awayteamId: { type: Schema.ObjectId, ref: 'Team' }
+  , eventDate: String
+  , eventTime: String
   , placeId     : { type: Schema.ObjectId, ref: 'Place' }
-  , orgId     : { type: Schema.ObjectId, ref: 'Organization' }
-  , homeTeamId     : { type: Schema.ObjectId, ref: 'Team' }
-  , awayTeamId     : { type: Schema.ObjectId, ref: 'Team' }
 });
  
 var Sport = mongoose.model('Sport', sportSchema);
@@ -125,7 +121,7 @@ async.waterfall([
 		    	  objArray.push(obje);
 		    }
 		    /* For each place read, create its reference to placetypes*/
-				async2.eachSeries(objArray, placeInsert, function(err) {
+				async.eachSeries(objArray, placeInsert, function(err) {
 			    		sys.log("place finished");
 				});
 		    });
@@ -165,7 +161,7 @@ async.waterfall([
 		    	  objArray.push(obje);
 		    }
 		    /* For each place read, create its reference to placetypes*/
-				async3.eachSeries(objArray, teamInsert, function(err) {
+				async.eachSeries(objArray, teamInsert, function(err) {
 			    		sys.log("team finished");
 				});
 		    });
@@ -173,6 +169,32 @@ async.waterfall([
 
 
 		callback(null,'Teams Inserted!');
+	},
+	/*TODO: Events will be inserted in an upsert manner.*/
+	function(arg1, callback) {
+		console.log(arg1);
+
+		
+		var parser1 = new xml2js.Parser();
+		fs.readFile(__dirname + '/events.xml', function(err, data) {
+		    parser1.parseString(data, function (err, result) {
+		    var arr = result.Events.Event;
+		    var objArray = new Array();
+		    for(var i=0; i<arr.length; i++) {
+		    	  var obje = arr[i]['$'];
+		    	  objArray.push(obje);
+		    }
+		    /* For each place read, create its reference to placetypes*/
+				async.eachSeries(objArray, eventInsert, function(err) {
+					if(err)
+					sys.log(err);
+			    		sys.log("event finished");
+				});
+		    });
+		});
+
+
+		callback(null,'Events Inserted!');
 	}
 	],
 function (err, caption) {
@@ -189,7 +211,7 @@ var placeInsert = function(arg, callback) {
 	var obj = JSON.stringify(arg);
 	var obje = JSON.parse(obj);
 	
-	async2.waterfall([
+	async.waterfall([
 			/*Find referenced placetype*/
 			function(callb) {
 			  PlaceType.findOne({placeTypeId : obje.typeId}, function(err, item){
@@ -222,15 +244,12 @@ var teamInsert = function(arg, callback) {
 	var obj = JSON.stringify(arg);
 	var obje = JSON.parse(obj);
 	
-	async3.waterfall([
+	async.waterfall([
 			/*Find referenced place*/
 			function(callb) {
 			  Place.findOne({tffPlaceId : obje.placeId}, function(err, item){
 			  if(err)
 			  console.log(err);
-
-			  console.log('obje',obje);
-			  console.log('item',item);
 			  
 			  callb(null, item, obje);
 			  });
@@ -264,8 +283,59 @@ var teamInsert = function(arg, callback) {
 }
 
 
+/*Team Insert function. First it finds the sporttype and place references, and then insert the team together with their references.*/
+var eventInsert = function(arg, callback) {
+	var obj = JSON.stringify(arg);
+	var obje = JSON.parse(obj);
+	
+	async.waterfall([
+			/*Find referenced place*/
+			function(callb) {
+			  Place.findOne({tffPlaceId : obje.placeID}, function(err, item){
+			  if(err)
+			  	console.log("err",err);
+			  callb(null, item, obje);
+			  });
+			},
 
+			/*Find referenced sporttype*/
+			/*arg2: place, arg1:object*/
+			function(arg2, arg1, callb) {
+			  Team.findOne({tffClubId : arg1.hometeamID},function(err, item) {
+			  	if(err)
+			  		console.log(err);
+			  	callb(null, item, arg2, arg1);
+			  	
+			 });
+			},
+			
+			/*Find referenced sporttype*/
+			/*arg2: homeTeamId, arg1:place, arg0:object*/
+			function(arg2,arg1,arg0, callb) {
+			  Team.findOne({tffClubId : arg0.awayteamID},function(err, item) {
+			  	if(err)
+			  		console.log(err);
 
+			  	callb(null, item, arg2, arg1,arg0);
+			  	
+			 });
+			},
+
+			/*Upsert place together with references*/
+			/*arg3: awayTeamId, arg2: homeTeamId, arg1:place, arg0:object*/
+			function(arg3,arg2,arg1,argO, callb) {
+			  Event.update({matchId : argO.matchID},{week: argO.week , hometeamId: arg2 ,awayTeamId: arg3 ,placeId : arg1, eventDate : argO.eventdate, eventTime : argO.eventtime},{upsert: true}, function(err, data) {
+			  	if(err)
+			  		console.log(err);
+			  	});
+			  callb(null,'Event Inserted!');
+			}
+		],
+		function (err, caption) {
+      			callback();
+  		}
+	);
+}
 
 
 /*Query the place with id=1 and populate its references for testing purposes*/

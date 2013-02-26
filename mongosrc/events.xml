@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-9"?> 
+<Events>
+	<Event week="1" matchID="106365" hometeamID="3" awayteamID="85" placeID="66" eventdate="17.08.2012" eventtime="21:00" eventtype="1"/>
+	<Event week="1" matchID="106359" hometeamID="4" awayteamID="3596" placeID="202" eventdate="18.08.2012" eventtime="17:00" eventtype="1"/>
+	<Event week="1" matchID="106358" hometeamID="116" awayteamID="74" placeID="69" eventdate="18.08.2012" eventtime="21:45" eventtype="1"/>
+	<Event week="1" matchID="106362" hometeamID="3665" awayteamID="3590" placeID="110" eventdate="19.08.2012" eventtime="20:00" eventtype="1"/>
+	<Event week="1" matchID="106363" hometeamID="72" awayteamID="3601" placeID="3765" eventdate="19.08.2012" eventtime="20:00" eventtype="1"/>
+	<Event week="1" matchID="106366" hometeamID="118" awayteamID="3630" placeID="81" eventdate="19.08.2012" eventtime="21:45" eventtype="1"/>
+	<Event week="1" matchID="106364" hometeamID="3606" awayteamID="52" placeID="11" eventdate="20.08.2012" eventtime="19:30" eventtype="1"/>
+	<Event week="1" matchID="106360" hometeamID="3604" awayteamID="39" placeID="5018" eventdate="20.08.2012" eventtime="21:00" eventtype="1"/>
+	<Event week="2" matchID="106371" hometeamID="39" awayteamID="4" placeID="103" eventdate="24.08.2012" eventtime="21:00" eventtype="1"/>
+	<Event week="2" matchID="106373" hometeamID="74" awayteamID="118" placeID="169" eventdate="25.08.2012" eventtime="19:00" eventtype="1"/>
+	<Event week="2" matchID="106375" hometeamID="3630" awayteamID="3" placeID="110" eventdate="25.08.2012" eventtime="20:00" eventtype="1"/>
+</Events>
