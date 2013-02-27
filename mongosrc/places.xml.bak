@@ -18,19 +18,7 @@
 <Place placeId="16" tffPlaceId="62" name="ELAZIÐ ATATÜRK" address="Atatürk Mh., 62000" typeId="1" photos="62_800_600_1.jpg" latitude="39.077663" longitude="39.536013" capacity="13923" city="23" country="90"/>
 <Place placeId="17" tffPlaceId="169" name="SÝVAS 4 EYLÜL" address="Kadýburhanettin Mh., 58030" typeId="1" photos="169_800_600_1.jpg" latitude="39.740773" longitude="37.002494" capacity="14998" city="58" country="90"/>
 <Place placeId="18" tffPlaceId="175" name="HÜSEYÝN AVNÝ AKER" address="Ýnönü Mh., 61040" typeId="1" photos="175_800_600_1.jpg, 175_800_600_2.jpg" latitude="41.003918" longitude="39.704385" capacity="24169" city="61" country="90"/>
-<Place placeId="19" tffPlaceId="1" name="5 OCAK" address="Reþatbey Mh., 01220" typeId="1" photos="1_800_600_1.jpg, 1_800_600_2.jpg, 1_800_600_3.jpg" latitude="36.998855" longitude="35.329733" capacity="14085" city="1" country="90"/>
-<Place placeId="20" tffPlaceId="42" name="BOLU ATATÜRK" address="Ýhsaniye Mh., 14100" typeId="1" photos="42_800_600_1.jpg" latitude="40.73617" longitude="31.60692" capacity="8881" city="14" country="90"/>
-<Place placeId="21" tffPlaceId="3753" name="YENÝ BUCA STADI" address="Vali Rahmi Bey Mh., 35380" typeId="1" photos="3753_800_600_1.jpg, 3753_800_600_2.jpg" latitude="38.384115" longitude="27.169602" capacity="8810" city="35" country="90"/>
-<Place placeId="22" tffPlaceId="3809" name="YENÝ RÝZE ÞEHÝR" address="GÜNDOÐDU" typeId="1" photos="3809_800_600_1.jpg" latitude="41.0418796" longitude="40.5732393" capacity="15485" city="53" country="90"/>
-<Place placeId="23" tffPlaceId="55" name="DENÝZLÝ ATATÜRK" address="Kuþpýnar Mah. 20254" typeId="1" photos="55_800_600_1.jpg, 55_800_600_2.jpg" latitude="37.765985" longitude="29.082296" capacity="15427" city="20" country="90"/>
-<Place placeId="24" tffPlaceId="118" name="ÝZMÝR ATATÜRK" address="Mersinli Mh., 35100 Konak" typeId="1" photos="118_800_600_1.jpg, 118_800_600_2.jpg" latitude="38.433144" longitude="27.176912" capacity="51295" city="35" country="90"/>
-<Place placeId="25" tffPlaceId="3619" name="ALSANCAK STADI" address="Umurbey Mh., 35230 Konak" typeId="1" photos="000156_800_600_1.jpg" latitude="38.437779" longitude="27.150392" capacity="20000" city="35" country="90"/>
-<Place placeId="26" tffPlaceId="89" name="RADYO SEYMEN KARTAL STADYUMU" address="Karlýktepe Mh., 34880" typeId="1" photos="89_800_600_1.jpg" latitude="40.891942" longitude="29.190909" capacity="7195" city="34" country="90"/>
-<Place placeId="27" tffPlaceId="137" name="MANÝSA 19 MAYIS" address="Ahmet Bedevi Mh., 45200" typeId="1" photos="137_800_600_1.jpg, 137_800_600_2.jpg" latitude="38.623291" longitude="27.438579" capacity="16597" city="45" country="90"/>
-<Place placeId="28" tffPlaceId="162" name="SAMSUN 19 MAYIS" address="Yenimahalle Mh., 55080" typeId="1" photos="162_800_600_1.jpg" latitude="41.269384" longitude="36.35525" capacity="16480" city="55" country="90"/>
-<Place placeId="29" tffPlaceId="3869" name="ÞANLIURFA GAP ARENA" address="Sancaktar Mh., 63000" typeId="1" photos="3869_800_600_1.jpg" latitude="37.147704" longitude="38.806767" capacity="28965" city="63" country="90"/>
-<Place placeId="30" tffPlaceId="5342" name="TAVÞANLI ÝLÇE" address="Saray Mh., 43000" typeId="1" photos="5343_800_600_1.jpg" latitude="39.417439" longitude="29.992138" capacity="0" city="43" country="90"/>
-<Place placeId="31" tffPlaceId="473" name="BÞ BLD ATATÜRK" address="Öðretmen Evleri Mh., 42000" typeId="1" photos="473_800_600_1.jpg" latitude="37.865385" longitude="32.483264" capacity="0" city="42" country="90"/>
+
 </Places>
 
 
