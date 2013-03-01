@@ -1,25 +1,80 @@
-var mongo = require('mongodb');
+var mongoose = require('mongoose'), Schema = mongoose.Schema;
+var db = mongoose.connect('mongodb://127.0.0.1:27017/test');
 
-var Server = mongo.Server,
-Db = mongo.Db,
-BSON = mongo.BSONPure;
-
-var server = new Server('127.0.0.1', 27017, {auto_reconnect: true});
-db = new Db('sporteventsdb', server, {safe: true});
-
-db.open(function(err, db) {
-	console.log("Opening Connection");
-
-	if(!err) {
-		console.log("Connected to 'sporteventsdb' database");
-		db.collection('sportevents', {safe:true}, function(err, collection) {
-		if (err) {
-			console.log("The 'sportevents' collection doesn't exist. Creating it with sample data...");
-			populateDB();
-		}
-	});
-}
+/*Object Model*/
+var sportSchema = Schema({
+    sportId: String
+    ,name: String
 });
+
+var sportTypeSchema = Schema({
+    sportTypeId: String
+    , name: String
+});
+
+var placeTypeSchema = Schema({
+    placeTypeId: String
+    , name: String
+});
+
+var placeSchema = new Schema({
+    placeId: String
+  , tffPlaceId: String
+  , name: String
+  , typeId : { type: Schema.ObjectId, ref: 'PlaceType' }
+  , address: String
+  , city: String
+  , country: String
+  , longitude: String
+  , latitude: String
+  , photos: [String]
+  , capacity: String
+});
+
+var teamSchema = new Schema({
+    teamId: String
+  , tffTeamId: String
+  , tffClubId: String
+  //, placeId: String
+  , name    : String
+  , placeId : { type: Schema.ObjectId, ref: 'Place' }
+  , sportTypeId : { type: Schema.ObjectId, ref: 'SportType' }
+  , logo   : [String]
+  , city    : String
+  , country : String
+  , website : String
+  , region : String
+});
+
+var organizationSchema = new Schema({
+   gsId: String
+  , name : String
+  , start_date: Date
+  , end_date: Date
+  , sportsId     : { type: Schema.ObjectId, ref: 'SportType' }
+});
+
+var eventSchema = new Schema({
+    week: String
+  , matchId : String
+  , hometeamId: { type: Schema.ObjectId, ref: 'Team' }
+  , awayteamId: { type: Schema.ObjectId, ref: 'Team' }
+  , eventDate: Date
+  , eventTime: String
+  , placeId     : { type: Schema.ObjectId, ref: 'Place' }
+});
+ 
+var Sport = mongoose.model('Sport', sportSchema);
+var SportType = mongoose.model('SportType', sportTypeSchema);
+var Organization = mongoose.model('Organization', organizationSchema);
+var Place = mongoose.model('Place', placeSchema);
+var PlaceType = mongoose.model('PlaceType', placeTypeSchema);
+var Team = mongoose.model('Team', teamSchema);
+var Event = mongoose.model('Event', eventSchema);
+
+
+
+
 
 exports.findById = function(req, res) {
 	var id = req.params.id;
@@ -49,7 +104,21 @@ exports.findAllSportEvents = function(req, res) {
 		return;
 	}
 
-	db.collection('sportevents', function(err, collection) {
+	var nowDate = new Date();
+	var currentDate = new Date(nowDate.getYear(),nowDate.getMonth(),nowDate.getDay());
+	var nextDate = new Date();
+	nextDate.setDate(currentDate.getDate()+15);
+	
+	
+	console.log(currentDate);
+	console.log(nextDate);
+	/*Query the place with id=1 and populate its references for testing purposes*/
+	Event.find({eventDate : { $gt: currentDate, $lt: nextDate }}).populate('placeId').exec(function(err, pl) { 
+		console.log(pl);
+	})
+
+
+	/*db.collection('sportevents', function(err, collection) {
 		collection.find().toArray(function(err, items) {
 			var output = { points : items,
 				polygons:[[[32.658844,-117.095734],[32.664352,-117.110397],[32.665211,-117.110733],[32.668373,-117.109688],[32.672939,-117.106956],[32.682457,-117.100403],[32.680431,-117.090553],[32.675617,-117.080437],[32.6740959,-117.0789602],[32.672218,-117.078873],[32.660557,-117.08622],[32.6571542,-117.0905529],[32.658844,-117.095734]]]
@@ -57,8 +126,27 @@ exports.findAllSportEvents = function(req, res) {
 			console.log(output);
 			res.send(output);
 		});
-	});
+	});*/
 };
+
+
+function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(lat2-lat1);  // deg2rad below
+  var dLon = deg2rad(lon2-lon1); 
+  var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ; 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c; // Distance in km
+  return d;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
 
 
 exports.findPolygonArea = function(req, res) {

@@ -66,7 +66,7 @@ var eventSchema = new Schema({
   , matchId : String
   , hometeamId: { type: Schema.ObjectId, ref: 'Team' }
   , awayteamId: { type: Schema.ObjectId, ref: 'Team' }
-  , eventDate: String
+  , eventDate: Date
   , eventTime: String
   , placeId     : { type: Schema.ObjectId, ref: 'Place' }
 });
@@ -324,7 +324,14 @@ var eventInsert = function(arg, callback) {
 			/*Upsert place together with references*/
 			/*arg3: awayTeamId, arg2: homeTeamId, arg1:place, arg0:object*/
 			function(arg3,arg2,arg1,argO, callb) {
-			  Event.update({matchId : argO.matchID},{week: argO.week , hometeamId: arg2 ,awayTeamId: arg3 ,placeId : arg1, eventDate : argO.eventdate, eventTime : argO.eventtime},{upsert: true}, function(err, data) {
+				
+				//new Date(1995,11,17)
+				var str=argO.eventdate;
+				var strTime=argO.eventtime;
+				var dateArray=str.split(".",3);
+				var timeArray=strTime.split(":",2);
+				console.log(dateArray[2],dateArray[1],dateArray[0],timeArray[0],timeArray[1]);
+			  Event.update({matchId : argO.matchID},{week: argO.week , hometeamId: arg2 ,awayTeamId: arg3 ,placeId : arg1, eventDate : new Date(dateArray[2],dateArray[1],dateArray[0],timeArray[0],timeArray[1],0), eventTime : argO.eventtime},{upsert: true}, function(err, data) {
 			  	if(err)
 			  		console.log(err);
 			  	});
