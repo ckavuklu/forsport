@@ -41,6 +41,8 @@ window.SearchView = Backbone.View.extend({
 
     searchResult: function(result) {
         //console.log(result);
+            alert(result);
+
         try {
             var jsonResult = JSON.parse(result);
             var view = new SearchResultsView({ model:jsonResult, searchString:this.searchString });
@@ -52,6 +54,7 @@ window.SearchView = Backbone.View.extend({
     },
 
     searchError: function(error) {
+            alert(error);
        // console.log(error);
         var self = this;
 

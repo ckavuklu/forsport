@@ -25,8 +25,7 @@ var placeSchema = new Schema({
   , address: String
   , city: String
   , country: String
-  , longitude: String
-  , latitude: String
+  , loc : {type: [Number], index: '2d'}
   , photos: [String]
   , capacity: String
 });
@@ -86,9 +85,35 @@ exports.findById = function(req, res) {
 });
 };
 
+var nearPlacesAndEvents = function (obj) {
+  console.log(obj);
+}
+
+
+var placeInsert = function(arg, callback) {
+	var obj = JSON.stringify(arg);
+	var obje = JSON.parse(obj);
+	
+	async.waterfall([
+			function(callb) {
+			    callb(null, obje);
+			},
+
+			function(arg1, callb) {
+			  callback(null,'Place Inserted!');
+			}
+		],
+		function (err, caption) {
+      			callback();
+  		}
+	);
+}
+
+
 exports.findAllSportEvents = function(req, res) {
 	var q = req.query["q"];
 	var ll = req.query["ll"];
+	var dist = parseFloat(req.query["dist"]);
 	var tokens = ll.split(",");
 	var lat = 0, lon = 0;
 
@@ -105,18 +130,17 @@ exports.findAllSportEvents = function(req, res) {
 	}
 
 	var nowDate = new Date();
-	var currentDate = new Date(nowDate.getYear(),nowDate.getMonth(),nowDate.getDay());
 	var nextDate = new Date();
-	nextDate.setDate(currentDate.getDate()+15);
+	var returnObject = new Array();
+	nextDate.setDate(nowDate.getDate()+7);
 	
-	
-	console.log(currentDate);
+	console.log(nowDate);
 	console.log(nextDate);
-	/*Query the place with id=1 and populate its references for testing purposes*/
-	Event.find({eventDate : { $gt: currentDate, $lt: nextDate }}).populate('placeId').exec(function(err, pl) { 
-		console.log(pl);
-	})
 
+        Event.find({eventDate : { $gt: nowDate, $lt: nextDate }}).populate('placeId', null, {loc: {$maxDistance: dist/111.2, $near: [lat,lon]} }).exec(function(err, pl) { 
+	  res.send({events: pl});
+	});
+	
 
 	/*db.collection('sportevents', function(err, collection) {
 		collection.find().toArray(function(err, items) {
@@ -128,6 +152,69 @@ exports.findAllSportEvents = function(req, res) {
 		});
 	});*/
 };
+
+/*
+function calcCircle(centerCoordinates, radius) {
+    var coordinatesArray = new Array();
+    var octantArrays =
+      {oct1: new Array(), oct2: new Array(), oct3: new Array(), oct4: new Array(),
+       oct5: new Array(), oct6: new Array(), oct7: new Array(), oct8: new Array()};
+    // Translate coordinates
+    var xp = centerCoordinates.left;
+    var yp = centerCoordinates.top;
+    // Define add coordinates to array
+    var setCrd =
+      function (targetArray, xC, yC) {
+        targetArray.push(new Coordinates(yC, xC));
+      };
+    // Define variables
+    var xoff = 0;
+    var yoff = radius;
+    var balance = -radius;
+    // Main loop
+    while (xoff <= yoff) {
+      // Quadrant 7 - Reverse
+      setCrd(octantArrays.oct7, xp + xoff, yp + yoff);
+      // Quadrant 6 - Straight
+      setCrd(octantArrays.oct6, xp - xoff, yp + yoff);
+      // Quadrant 3 - Reverse
+      setCrd(octantArrays.oct3, xp - xoff, yp - yoff);
+      // Quadrant 2 - Straight
+      setCrd(octantArrays.oct2, xp + xoff, yp - yoff);
+      // Avoid duplicates
+      if (xoff != yoff) {
+        // Quadrant 8 - Straight
+        setCrd(octantArrays.oct8, xp + yoff, yp + xoff);
+        // Quadrant 5 - Reverse
+        setCrd(octantArrays.oct5, xp - yoff, yp + xoff);
+        // Quadrant 4 - Straight
+        setCrd(octantArrays.oct4, xp - yoff, yp - xoff);
+        // Quadrant 1 - Reverse
+        setCrd(octantArrays.oct1, xp + yoff, yp - xoff);
+      }
+      // Some weird stuff
+      balance += xoff++ + xoff;
+      if (balance >= 0) {
+        balance -= --yoff + yoff;
+      }
+    }
+    // Reverse counter clockwise octant arrays
+    octantArrays.oct7.reverse();
+    octantArrays.oct3.reverse();
+    octantArrays.oct5.reverse();
+    octantArrays.oct1.reverse();
+    // Remove counter clockwise octant arrays last element (avoid duplicates)
+    octantArrays.oct7.pop();
+    octantArrays.oct3.pop();
+    octantArrays.oct5.pop();
+    octantArrays.oct1.pop();
+    // Append all arrays together
+    coordinatesArray =
+      octantArrays.oct4.concat(octantArrays.oct3).concat(octantArrays.oct2).concat(octantArrays.oct1).
+        concat(octantArrays.oct8).concat(octantArrays.oct7).concat(octantArrays.oct6).concat(octantArrays.oct5);
+    // Return the result
+    return coordinatesArray;
+  }
 
 
 function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
@@ -147,7 +234,7 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
 function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
-
+*/
 
 exports.findPolygonArea = function(req, res) {
 	console.log('findPolygonArea');

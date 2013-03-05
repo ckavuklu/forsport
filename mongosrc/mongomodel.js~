@@ -220,7 +220,7 @@ var placeInsert = function(arg, callback) {
 
 			/*Upsert place together with reference*/
 			function(arg2,arg1, callb) {
-			  Place.update({placeId : arg1.placeId},{name: arg1.name , typeId : arg2, loc: [parseFloat(arg1.latitude),parseFloat(arg1.longitude)],tffPlaceId:arg1.tffPlaceId,address:arg1.address,city:arg1.city,country:arg1.country,photos:arg1.photos},{upsert: true}, function(err, data) {
+			  Place.update({placeId : arg1.placeId},{name: arg1.name , typeId : arg2, loc: [parseFloat(arg1.longitude),parseFloat(arg1.latitude)],tffPlaceId:arg1.tffPlaceId,address:arg1.address,city:arg1.city,country:arg1.country,photos:arg1.photos},{upsert: true}, function(err, data) {
 			  	if(err)
 			  		console.log(err);
 			  	

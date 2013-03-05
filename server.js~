@@ -21,7 +21,7 @@ var TT_DATA_URL = "http://api.igeolise.com/time_filter";
 var TT_MAPS_URL = "http://api.igeolise.com/time_map";
 var TT_APP_ID = "642843bd";
 var TT_APP_KEY = "6d2dcf13a8a8a8f6a1fddbc452515ece";
-
+/*
 app.use(function(req, res, next) {
     var oneof = false;
     if(req.headers.origin) {
@@ -48,7 +48,7 @@ app.use(function(req, res, next) {
         next();
     }
 });
-
+*/
 
 app.get("/", function(req, res) {
   res.redirect("index.html");

@@ -4,26 +4,19 @@ window.SearchManager = {
     apiUrl:"http://127.0.0.1:3000/sportevents?",
     
     search:function (searchString, successCallback, errorCallback) {
-        var searchURL = this.apiUrl + "q=" + encodeURIComponent(searchString) + "&ll=" + window.GeoWatcher.position.latitude + "," + window.GeoWatcher.position.longitude + "&d=" + new Date().getTime();
+        var searchURL = this.apiUrl + "q=" + encodeURIComponent(searchString) + "&ll=" + window.GeoWatcher.position.latitude + "," + window.GeoWatcher.position.longitude + "&dist=100.00&d=" + new Date().getTime();
 
         $.ajax({
             timeout:30000,
             url:searchURL,
             dataType: "text",
             success:function(result){
-            		console.log("Client Success2 " + result);
                 if ( successCallback ) {
-                	  console.log("Calling Success Callback");
-                    successCallback( result );
+		  var obje = JSON.parse(result);
+		  obje.events =obje.events.filter(function(v) { return v.placeId == null? false: true;});
+                  successCallback( JSON.stringify(obje));
                 }
             },
-            /*error:function(error){
-            	  console.log("Client Error2 " + error);
-                if ( errorCallback ){
-                	  console.log("Calling Error Callback " + result.status + ' ' + result.statusText);
-                    errorCallback( error );
-                }
-            }*/
             
             error: function(jqXHR, exception) {
             if (jqXHR.status === 0) {
@@ -51,7 +44,7 @@ window.SearchManager = {
     findPointById:function (id, collection) {
         for (var x=0; x<collection.length; x++) {
             var poi = collection[x];
-            if (poi.factual_id == id){
+            if (poi.matchId == id){
                 return poi;
             }
         }
