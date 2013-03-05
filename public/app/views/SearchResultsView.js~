@@ -22,9 +22,7 @@ window.SearchResultsView = Backbone.View.extend({
     },
     
     render:function (eventName) {
-        console.log('render');
         var template = _.template(templates.searchResults);
-	console.log(template);
         this.$el.css("background", "white");
         this.$el.html(template( {searchString:this.searchString, events:this.model.events, walking:true} ));
         var $list = this.$el.find("#list");
@@ -56,12 +54,11 @@ window.SearchResultsView = Backbone.View.extend({
         
         target.addClass( "listSelected" );
         var id = target.attr( "id" );
+        console.log( 'ID: ',id );
         var poi = SearchManager.findPointById( id, this.model.events );
-        console.log( poi );
+        console.log( 'POI: ',poi );
         
         var detailView = new ItemDetailView({model:poi})
-        console.log( 'detailView' );
-        console.log( detailView );
         window.viewNavigator.pushView( detailView );
        
     }

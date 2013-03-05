@@ -5,18 +5,13 @@
 <div id="walker" style="position:absolute; top:50%; right:20px; text-align: center">
     <div id="wwrapper" style="margin-top:-34px;">
         <img src="assets/images/walk/<%=  __svgColor  %>.png" />
-
-        <% if (true) { %>
             <div id="time" style="color:#<%=  __svgColor  %>"><%= 10 %></div>
-        <% } else { %>
-            <div id="time" style="color:#<%=  __svgColor  %>"><%= 5 %> miles</div>
-        <% } %>
     </div>
 </div>
 
 <div id="overlay">
 
-    <strong id="name"><%= placeId.name %></strong><br/>
+    <strong id="name"><%= hometeamId.name %></strong><br/>
      <span id="distance">
     <% if (true) { %>(<%= 10 %> miles)</span><% } %>
     <br/>

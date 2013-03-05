@@ -330,7 +330,7 @@ var eventInsert = function(arg, callback) {
 				var dateArray=str.split(".",3);
 				var timeArray=strTime.split(":",2);
 				console.log(dateArray[2],dateArray[1],dateArray[0],timeArray[0],timeArray[1]);
-			  Event.update({matchId : argO.matchID},{week: argO.week , hometeamId: arg2 ,awayTeamId: arg3 ,placeId : arg1, eventDate : new Date(dateArray[2],dateArray[1],dateArray[0],timeArray[0],timeArray[1],0), eventTime : argO.eventtime},{upsert: true}, function(err, data) {
+			  Event.update({matchId : argO.matchID},{week: argO.week , hometeamId: arg2 ,awayteamId: arg3 ,placeId : arg1, eventDate : new Date(dateArray[2],dateArray[1]-1,dateArray[0],timeArray[0],timeArray[1],0), eventTime : argO.eventtime},{upsert: true}, function(err, data) {
 			  	if(err)
 			  		console.log(err);
 			  	});

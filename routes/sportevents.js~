@@ -119,7 +119,6 @@ exports.findAllSportEvents = function(req, res) {
 
 	if (tokens.length == 2) {
 		//todo, check if valid numbers & within appropriate bounds
-		console.log("todo, check if valid numbers & within appropriate bounds");
 		lat = parseFloat(tokens[0]);
 		lon = parseFloat(tokens[1]);
 	}
@@ -137,9 +136,8 @@ exports.findAllSportEvents = function(req, res) {
 	console.log(nowDate);
 	console.log(nextDate);
 
-        Event.find({eventDate : { $gt: nowDate, $lt: nextDate }}).populate('placeId', null, {loc: {$maxDistance: dist/111.2, $near: [lat,lon]} }).exec(function(err, pl) { 
+        Event.find({eventDate : { $gt: nowDate, $lt: nextDate }}).populate('placeId', null, {loc: {$maxDistance: dist/111.2, $near: [lat,lon]} }).populate('hometeamId').populate('awayteamId').exec(function(err, pl) { 
 	  res.send({events: pl});
-	  console.log(pl);
 	});
 	
 

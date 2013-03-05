@@ -44,7 +44,7 @@ window.SearchManager = {
     findPointById:function (id, collection) {
         for (var x=0; x<collection.length; x++) {
             var poi = collection[x];
-            if (poi.placeId == id){
+            if (poi.placeId.placeId == id){
                 return poi;
             }
         }

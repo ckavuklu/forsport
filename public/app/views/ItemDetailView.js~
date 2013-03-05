@@ -9,12 +9,7 @@ window.ItemDetailView = Backbone.View.extend({
     initialize: function(options) {
     console.log('ItemDetailView:',this.model);
 
-        if ( true ) {
-            this.title = "Walk: " + this.model.week;
-        }
-        else {
-            this.title = "Dist: " + this.model.eventTime;
-        }
+        this.title = "Week: " + this.model.week;
         this.template = _.template( templates.itemDetailView ),
         this.render();
         this.view = this.$el;
@@ -40,7 +35,7 @@ window.ItemDetailView = Backbone.View.extend({
         //use a timeout b/c it hasn't been added to dom yet, which causes a leaflet error
         setTimeout( function() {
 
-            var map = L.map('map'+self.model.placeId, {
+            var map = L.map('map'+self.model.placeId.placeId, {
                 center: [window.GeoWatcher.position.latitude, window.GeoWatcher.position.longitude],
                 zoom: 15
             });
@@ -84,14 +79,15 @@ window.ItemDetailView = Backbone.View.extend({
 
                     var poi = self.model;
 
-                    var lat = poi.placeId.loc.latitude;
-                    var lon = poi.placeId.loc.longitude;
+                    var lat = poi.placeId.loc[0];
+                    var lon = poi.placeId.loc[1];
                     if ( lat != "" && lon != "" ) {
 
                         var latLng = new L.LatLng(lat, lon);
                         var marker = new L.Marker(latLng);
 
-                        var popupContent = poi.name;
+                        var popupContent = poi.placeId.name;
+                        console.log('popupcontent',popupContent);
 
                         var popup = marker.bindPopup( popupContent, {offset:new L.Point(0,-35)} );
                         markersLayer.addLayer(marker);
@@ -115,7 +111,7 @@ window.ItemDetailView = Backbone.View.extend({
 
                 var startEvent = NativeUtil.touchSupported() ? "touchstart" : "mousedown";
                 //console.log( startEvent );
-                $("#map" + self.model.placeId).bind( startEvent, function(event){
+                $("#map" + self.model.placeId.placeId).bind( startEvent, function(event){
                     event.stopPropagation();
                     event.preventDefault();
                     return false;
@@ -135,7 +131,7 @@ window.ItemDetailView = Backbone.View.extend({
     },
     
     getDirections: function(event) {
-        NativeUtil.getDirections( this.model.placeId.loc.latitude, this.model.placeId.loc.longitude );
+        NativeUtil.getDirections( this.model.placeId.loc[0], this.model.placeId.loc[1] );
     },
     
     webSearch: function(event) {

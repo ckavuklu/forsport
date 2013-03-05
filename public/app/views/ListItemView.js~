@@ -18,7 +18,8 @@ window.ListItemView = Backbone.View.extend({
     render:function (eventName) {
         var model = this.model;
         this.$el.html( this.template( model ));
-        this.$el.attr('id', model.placeId );
+	console.log('ListItemView ID:',model.placeId.placeId);
+        this.$el.attr('id', model.placeId.placeId );
         return this;
     }
 });

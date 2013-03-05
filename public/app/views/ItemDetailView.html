@@ -5,18 +5,15 @@
 
     <div class="padded">
         <h1 class="green shadow"><%= name %></h1>
-
        
-        <% if (typeof(eventDate) != "undefined") { %>
-            <div><span class="label">Web</span>&nbsp;<a id="website" href="<%= website %>" target="_blank"><%= eventTime %></a></div>
-        <% } %>
+            <div><span class="label">Web</span>&nbsp;<a id="website" href="<%= eventTime %>" target="_blank"><%= eventTime %></a></div>
 
     </div>
 </div>
 
 <div class="gpu" style="background: white;">
     <div id='mapContainer' class="detailMapContainer" style='width:<%= mapSize %>px; height:<%= mapSize/2 %>px'>
-        <div id="map<%= factual_id %>" style="width:100%;height:100%;"></div>
+        <div id="map<%= placeId.placeId %>" style="width:100%;height:100%;"></div>
     </div>
 
     <div class="toolbar">

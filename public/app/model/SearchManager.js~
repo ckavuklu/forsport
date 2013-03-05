@@ -4,7 +4,7 @@ window.SearchManager = {
     apiUrl:"http://127.0.0.1:3000/sportevents?",
     
     search:function (searchString, successCallback, errorCallback) {
-        var searchURL = this.apiUrl + "q=" + encodeURIComponent(searchString) + "&ll=" + window.GeoWatcher.position.latitude + "," + window.GeoWatcher.position.longitude + "&dist=100.00&d=" + new Date().getTime();
+        var searchURL = this.apiUrl + "q=" + encodeURIComponent(searchString) + "&ll=" + window.GeoWatcher.position.latitude + "," + window.GeoWatcher.position.longitude + "&dist=800.00&d=" + new Date().getTime();
 
         $.ajax({
             timeout:30000,
@@ -44,7 +44,7 @@ window.SearchManager = {
     findPointById:function (id, collection) {
         for (var x=0; x<collection.length; x++) {
             var poi = collection[x];
-            if (poi.matchId == id){
+            if (poi.placeId.placeId == id){
                 return poi;
             }
         }
