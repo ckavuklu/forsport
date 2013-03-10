@@ -4,7 +4,7 @@ window.SearchManager = {
     apiUrl:"http://127.0.0.1:3000/sportevents?",
     
     search:function (searchString, successCallback, errorCallback) {
-        var searchURL = this.apiUrl + "q=" + encodeURIComponent(searchString) + "&ll=" + window.GeoWatcher.position.latitude + "," + window.GeoWatcher.position.longitude + "&dist=800.00&d=" + new Date().getTime();
+        var searchURL = this.apiUrl + "q=" + encodeURIComponent(searchString) + "&ll=" + window.GeoWatcher.position.latitude + "," + window.GeoWatcher.position.longitude + "&d=" + new Date().getTime();
 
         $.ajax({
             timeout:30000,
@@ -14,6 +14,9 @@ window.SearchManager = {
                 if ( successCallback ) {
 		  var obje = JSON.parse(result);
 		  obje.events =obje.events.filter(function(v) { return v.placeId == null? false: true;});
+		  obje.events =obje.events.filter(function(v) { return v.hometeamId == null? false: true;});
+		  obje.events =obje.events.filter(function(v) { return v.awayteamId == null? false: true;});
+		  obje.events =obje.events.filter(function(v) { return v.eventTypeId == null? false: true;});
                   successCallback( JSON.stringify(obje));
                 }
             },

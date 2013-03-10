@@ -238,11 +238,19 @@ body {
 
 
 
-#selectCuisine {
+#selectSport {
     text-align: center;
-    width:100%;
+    width:40%;
     padding:0.5em;
 }
+
+
+#selectBestNearby {
+    text-align: center;
+    width:40%;
+    padding:0.5em;
+}
+
 
 .searchBackground {
     height:100%;
@@ -298,11 +306,11 @@ body {
 
 
 .header {
-    background: url('images/lettuce.jpg') no-repeat;
+    background: url('images/lettuce.jpg');
 }
 
 .header h1 {
-    background: url('images/lettuce.jpg') no-repeat;
+    background: url('images/lettuce.jpg');
     margin:0px;
     padding:10px 10px;
     color: white;

@@ -34,7 +34,6 @@ var teamSchema = new Schema({
     teamId: String
   , tffTeamId: String
   , tffClubId: String
-  //, placeId: String
   , name    : String
   , placeId : { type: Schema.ObjectId, ref: 'Place' }
   , sportTypeId : { type: Schema.ObjectId, ref: 'SportType' }
@@ -61,6 +60,8 @@ var eventSchema = new Schema({
   , eventDate: Date
   , eventTime: String
   , placeId     : { type: Schema.ObjectId, ref: 'Place' }
+  , eventTypeId     : { type: Schema.ObjectId, ref: 'SportType' }
+  , eventDescription     : String
 });
  
 var Sport = mongoose.model('Sport', sportSchema);
@@ -111,36 +112,59 @@ var placeInsert = function(arg, callback) {
 
 
 exports.findAllSportEvents = function(req, res) {
-	var q = req.query["q"];
+	var searchString = req.query["q"];
 	var ll = req.query["ll"];
-	var dist = parseFloat(req.query["dist"]);
 	var tokens = ll.split(",");
 	var lat = 0, lon = 0;
-
-	if (tokens.length == 2) {
-		//todo, check if valid numbers & within appropriate bounds
-		lat = parseFloat(tokens[0]);
-		lon = parseFloat(tokens[1]);
-	}
-	else {
-		//would be better to throw an error, but sending empty response for now
-		console.log("would be better to throw an error, but sending empty response for now");
-		return;
-	}
-
+	var dist = 0;
 	var nowDate = new Date();
 	var nextDate = new Date();
 	var returnObject = new Array();
-	nextDate.setDate(nowDate.getDate()+7);
-	
-	console.log(nowDate);
-	console.log(nextDate);
 
-        Event.find({eventDate : { $gt: nowDate, $lt: nextDate }}).populate('placeId', null, {loc: {$maxDistance: dist/111.2, $near: [lat,lon]} }).populate('hometeamId').populate('awayteamId').exec(function(err, pl) { 
-	  res.send({events: pl});
-	});
-	
+	if (tokens.length == 2) {
+		lat = parseFloat(tokens[0]);
+		lon = parseFloat(tokens[1]);
+	}
 
+	  if(searchString.substring(0,4) == "TYPE"){
+
+	    var searchToken = searchString.substring(5);
+	    console.log(searchToken);
+
+	    if(searchToken == "BESTNEARBY")
+{
+	     nextDate.setDate(nowDate.getDate()+7);
+	     dist = 100.0;
+	     Event.find({eventDate : { $gt: nowDate, $lt: nextDate }}).populate('placeId', null, {loc: {$maxDistance: dist/111.2, $near: [lat,lon]} }).populate('hometeamId').populate('awayteamId').populate('eventTypeId').exec(function(err, pl) { 
+	    res.send({events: pl});
+	    });
+	    }else{
+	    nextDate.setDate(nowDate.getDate()+60);
+	    
+	    dist = 100.0;
+	    Event.find({eventDate : { $gt: nowDate, $lt: nextDate }}).populate('placeId', null, {loc: {$maxDistance: dist/111.2, $near: [lat,lon]} }).populate('eventTypeId',null,{'name' : searchToken}).populate('hometeamId').populate('awayteamId').exec(function(err, pl) { 
+	    res.send({events: pl});
+	    });
+
+	    }
+	  
+	  
+	  }else{
+//User manually input the text or click on an item
+	     nextDate.setDate(nowDate.getDate()+60);
+	     console.log("searching for",searchString);
+	     
+	     Event.find({eventDate : { $gt: nowDate, $lt: nextDate }, eventDescription:{$regex: new RegExp(searchString, 'i') }}).populate('placeId').populate('hometeamId').populate('awayteamId').populate('eventTypeId').exec(function(err, pl) { 
+	    res.send({events: pl});
+	  });
+
+
+
+	  }
+
+
+
+       
 	/*db.collection('sportevents', function(err, collection) {
 		collection.find().toArray(function(err, items) {
 			var output = { points : items,

@@ -68,6 +68,8 @@ var eventSchema = new Schema({
   , eventDate: Date
   , eventTime: String
   , placeId     : { type: Schema.ObjectId, ref: 'Place' }
+  , eventTypeId     : { type: Schema.ObjectId, ref: 'SportType' }
+  , eventDescription: String
 });
  
 var Sport = mongoose.model('Sport', sportSchema);
@@ -77,7 +79,6 @@ var Place = mongoose.model('Place', placeSchema);
 var PlaceType = mongoose.model('PlaceType', placeTypeSchema);
 var Team = mongoose.model('Team', teamSchema);
 var Event = mongoose.model('Event', eventSchema);
-
 
 
 /*Main DB population steps. Works step by step*/
@@ -297,7 +298,6 @@ var eventInsert = function(arg, callback) {
 			  });
 			},
 
-			/*Find referenced sporttype*/
 			/*arg2: place, arg1:object*/
 			function(arg2, arg1, callb) {
 			  Team.findOne({tffClubId : arg1.hometeamID},function(err, item) {
@@ -308,7 +308,6 @@ var eventInsert = function(arg, callback) {
 			 });
 			},
 			
-			/*Find referenced sporttype*/
 			/*arg2: homeTeamId, arg1:place, arg0:object*/
 			function(arg2,arg1,arg0, callb) {
 			  Team.findOne({tffClubId : arg0.awayteamID},function(err, item) {
@@ -320,9 +319,21 @@ var eventInsert = function(arg, callback) {
 			 });
 			},
 
+			/*arg3: sportTypeId,arg2: homeTeamId, arg1:place, arg0:object*/
+			function(arg3,arg2,arg1,arg0, callb) {
+			  SportType.findOne({sportTypeId : arg0.eventtypeID},function(err, item) {
+			  	if(err)
+			  		console.log(err);
+
+			  	callb(null, item, arg3, arg2, arg1,arg0);
+			  	
+			 });
+			},
+
+
 			/*Upsert place together with references*/
-			/*arg3: awayTeamId, arg2: homeTeamId, arg1:place, arg0:object*/
-			function(arg3,arg2,arg1,argO, callb) {
+			/*arg4: sportTypeId,arg3: awayTeamId, arg2: homeTeamId, arg1:place, arg0:object*/
+			function(arg4,arg3,arg2,arg1,argO, callb) {
 				
 				//new Date(1995,11,17)
 				var str=argO.eventdate;
@@ -330,7 +341,7 @@ var eventInsert = function(arg, callback) {
 				var dateArray=str.split(".",3);
 				var timeArray=strTime.split(":",2);
 				console.log(dateArray[2],dateArray[1],dateArray[0],timeArray[0],timeArray[1]);
-			  Event.update({matchId : argO.matchID},{week: argO.week , hometeamId: arg2 ,awayteamId: arg3 ,placeId : arg1, eventDate : new Date(dateArray[2],dateArray[1]-1,dateArray[0],timeArray[0],timeArray[1],0), eventTime : argO.eventtime},{upsert: true}, function(err, data) {
+			  Event.update({matchId : argO.matchID},{week: argO.week , hometeamId: arg2 ,awayteamId: arg3 ,eventTypeId: arg4 ,placeId : arg1, eventDate : new Date(dateArray[2],dateArray[1]-1,dateArray[0],timeArray[0],timeArray[1],0), eventTime : argO.eventtime, eventDescription: arg2.name + '-' + arg3.name + '-' +arg1.name + '-' +arg4.name},{upsert: true}, function(err, data) {
 			  	if(err)
 			  		console.log(err);
 			  	});

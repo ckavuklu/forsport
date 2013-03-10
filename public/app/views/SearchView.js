@@ -21,6 +21,7 @@ window.SearchView = Backbone.View.extend({
             }
 
             //delay long enough for transition to complete
+
             setTimeout(function(){SearchManager.search( self.searchString, self.onSearchResult, self.onSearchError );}, 401 );
         }
         else {

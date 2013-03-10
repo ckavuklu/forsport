@@ -11,9 +11,8 @@
 
 <div id="overlay">
 
-    <strong id="name"><%= hometeamId.name %></strong><br/>
-     <span id="distance">
-    <% if (true) { %>(<%= 10 %> miles)</span><% } %>
+    <strong id="name"><%= hometeamId.name %> - <%= awayteamId.name %></strong><br/>
+    <span id="name"><%= placeId.name %> <br/>
     <br/>
 
 </div>

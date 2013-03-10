@@ -238,11 +238,19 @@ body {
 
 
 
-#selectCuisine {
+#selectSport {
     text-align: center;
-    width:100%;
+    width:40%;
     padding:0.5em;
 }
+
+
+#selectBestNearby {
+    text-align: center;
+    width:40%;
+    padding:0.5em;
+}
+
 
 .searchBackground {
     height:100%;

@@ -3,35 +3,39 @@
     <div id="wrapper">
         <div class="well">
             <h1> Welcome to GameSquare! </h1>
-            <p>GameSquare is the easiest way to find a sport event within a reasonable walking distance from your current location.
+            <p>
                 <% if ((typeof(isTablet) != "undefined") && isTablet) { %>
                     Either select a sport or enter a search phase, and you'll be where you want to be, before you know it!
                 <% } %>
             </p>
 
             <div style="text-align: center;">
-                <p>
-                    <button id="selectCuisine" class="btn btn-info">Select A Team </button>
-                </p>
 
-                <h4 style="text-align: center">--OR--</h4>
-
-                <p>
+		<p>
                     <form >
                         <div class="input-append" style="max-width: 90%;">
-                            <input type="text" id="searchString" placeholder="Enter A Search Phrase…">
-                            <button id="search" type="submit"  class="btn btn-info"><i class="icon-search icon-white"></i> </button>
+                            <input type="text" id="searchString" placeholder="Enter A Search Phrase">
+                            <button id="search" type="submit"  class="btn btn-danger"><i class="icon-search icon-white"></i> </button>
                         </div>
                     </form>
                 </p>
-
-
-                <p style="text-align: left;">
-                    <strong>Search for anything...</strong> A team name (<a href="#" class="searchlink">Karsiyaka</a>, <a href="#" class="searchlink">Bucaspor</a>), a type of sport
-                    (<a href="#" class="searchlink">football</a>, <a href="#" class="searchlink">basketball</a>, <a href="#" class="searchlink">volleyball</a>),
-                    a venue (<a href="#" class="searchlink">Karsiyaka Arena</a>, <a href="#" class="searchlink">Alsancak Stadium</a>, or <a href="#" class="searchlink">sushi</a>),
-                    part of a street address (<a href="#" class="searchlink">Bagdat Street</a>, <a href="#" class="searchlink">Besiktas</a>), etc...
+		<p style="text-align: left;">
+                    <strong>Search for anything...</strong> A team name (<a href="#" class="searchlink">Karsiyaka</a>, a type of sport
+                    (<a href="#" class="searchlink">football</a>,
+                    a venue (<a href="#" class="searchlink">Karsiyaka Arena</a>, etc...
                 </p>
+
+		<span style="text-align: center; top-margin:10px" >--or--</span>
+
+                <p>
+                    <button id="selectBestNearby" class="btn btn-danger" >Best Nearby </button>
+                </p>
+
+                <span style="text-align: center; top-margin:10px" >--or--</span>
+		<p>
+                    <button id="selectSport" class="btn btn-danger" >Browse For Games </button>
+                </p>
+                
             </div>
 
             <p class="alert alert-info" style="font-weight: bold; margin:0px -20px;">Currently only sport events in Turkey are available!</p>

@@ -12,7 +12,8 @@ window.HomeView = Backbone.View.extend({
     
     events:{
         "click #search":"performSearch",
-        "click #selectCuisine":"selectCuisine",
+        "click #selectSport":"selectSport",
+        "click #selectBestNearby":"selectBestNearby",
         "click .searchlink":"performSearchForLink"
     },
     
@@ -42,16 +43,9 @@ window.HomeView = Backbone.View.extend({
             var hOffset = ($(window).width() - well.width())-70;
             
             hOffset = hOffset/2;
-            /*
-            if ( $(window).width() > 700) {
-            	hOffset = hOffset/3;
-            }
-            else {
-            	hOffset = hOffset/4;
-            }*/
             
             well.css("left", hOffset+"px");
-            well.css("top", "180px");
+            well.css("top", "150px");
         }
 
         this.headerActions = $("<li class='btn btn-inverse' style='padding: 5px 5px;'><i class='icon-info-sign icon-white'></i></li>");
@@ -76,7 +70,16 @@ window.HomeView = Backbone.View.extend({
         this.lastTimestamp = new Date().getTime();
     },
 
-    selectCuisine:function () {
+    selectBestNearby:function () {
+
+    	if ( !this.lastTimestamp || (new Date().getTime()-this.lastTimestamp) > 500) {
+	        var view = new SearchView( {searchString:'TYPE:BESTNEARBY'} );
+	        window.viewNavigator.pushView( view );
+    	}
+        this.lastTimestamp = new Date().getTime();
+    },
+
+    selectSport:function () {
 
         var view = new CuisineView();
         window.viewNavigator.pushView( view );
