@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-9"?>
+<Teams>
+<Team teamId="1" tffTeamId="000084" tffClubId="85" name="AKHISAR BELEDIYE GENCLIK VE SPOR" placeId="139" logo="000084_120x120.jpg" sportTypeId="1" website="www.akhisarspor.com" region="IZMIR" city="45" country="90"/>
+<Team teamId="2" tffTeamId="000148" tffClubId="3590" name="BESIKTAS A.S." placeId="85" logo="000148_120x120.jpg" sportTypeId="1" website="www.bjk.com.tr" region="IST./MARMARA" city="34" country="90"/>
+<Team teamId="3" tffTeamId="000159" tffClubId="3601" name="BURSASPOR" placeId="44" logo="000159_120x120.jpg" sportTypeId="1" website="www.bursaspor.org" region="BURSA/MARMARA" city="16" country="90"/>
+<Team teamId="4" tffTeamId="000001" tffClubId="3" name="ESKISEHIRSPOR" placeId="66" logo="000001_120x120.jpg" sportTypeId="1" website="www.eskisehirspor.org" region="BURSA/MARMARA" city="26" country="90"/>
+<Team teamId="5" tffTeamId="000150" tffClubId="3592" name="FENERBAHCE A.S." placeId="86" logo="000150_120x120.jpg" sportTypeId="1" website="www.fenerbahce.org" region="IST./MARMARA" city="34" country="90"/>
+<Team teamId="6" tffTeamId="000162" tffClubId="3604" name="GALATASARAY A.S." placeId="5018" logo="000162_120x120.jpg" sportTypeId="1" website="www.galatasaray.org" region="IST./MARMARA" city="34" country="90"/>
+<Team teamId="7" tffTeamId="000117" tffClubId="116" name="GAZIANTEPSPOR" placeId="69" logo="000117_120x120.jpg" sportTypeId="1" website="www.gaziantepspor.org.tr" region="ADANA" city="27" country="90"/>
+<Team teamId="8" tffTeamId="000164" tffClubId="3606" name="GENCLERBIRLIGI" placeId="11" logo="000164_120x120.jpg" sportTypeId="1" website="www.genclerbirligi.org.tr" region="ANKARA" city="06" country="90"/>
+<Team teamId="9" tffTeamId="000240" tffClubId="3665" name="ISTANBUL BBSK" placeId="110" logo="000240_120x120.jpg" sportTypeId="1" website="www.istanbulbbsk.org" region="IST./MARMARA" city="34" country="90"/>
+<Team teamId="10" tffTeamId="000002" tffClubId="4" name="KARDEMIR D.C. KARABUKSPOR" placeId="202" logo="000002_120x120.jpg" sportTypeId="1" website="" region="ANKARA" city="78" country="90"/>
+<Team teamId="11" tffTeamId="000038" tffClubId="39" name="KASIMPASA A.S." placeId="103" logo="000038_120x120.jpg" sportTypeId="1" website="www.kasimpasaspor.org.tr" region="IST./MARMARA" city="34" country="90"/>
+<Team teamId="12" tffTeamId="000071" tffClubId="72" name="KAYSERISPOR" placeId="3765" logo="000071_120x120.jpg" sportTypeId="1" website="www.kayserispor.org.tr" region="KAYSERI" city="38" country="90"/>
+<Team teamId="13" tffTeamId="000051" tffClubId="52" name="MEDICAL PARK ANTALYASPOR" placeId="5343" logo="000051_120x120.jpg" sportTypeId="1" website="www.antalyaspor.com.tr" region="ANTALYA" city="07" country="90"/>
+<Team teamId="14" tffTeamId="000119" tffClubId="118" name="MERSIN IDMANYURDU" placeId="81" logo="000119_120x120.jpg" sportTypeId="1" website="" region="ADANA" city="33" country="90"/>
+<Team teamId="15" tffTeamId="000188" tffClubId="3630" name="ORDUSPOR" placeId="153" logo="000188_120x120.jpg" sportTypeId="1" website="www.orduspor.org.tr" region="TRABZON" city="52" country="90"/>
+<Team teamId="16" tffTeamId="000036" tffClubId="37" name="SANICA BORU ELAZIGSPOR" placeId="62" logo="000036_120x120.jpg" sportTypeId="1" website="www.elazigspor.org.tr" region="TRABZON" city="23" country="90"/>
+<Team teamId="17" tffTeamId="000073" tffClubId="74" name="SIVASSPOR" placeId="169" logo="000073_120x120.jpg" sportTypeId="1" website="www.sivasspor.org.tr" region="KAYSERI" city="58" country="90"/>
+<Team teamId="18" tffTeamId="000154" tffClubId="3596" name="TRABZONSPOR A.S." placeId="175" logo="000154_120x120.jpg" sportTypeId="1" website="www.trabzonspor.org.tr" region="TRABZON" city="61" country="90"/>
+<Team teamId="19" tffTeamId="011624" tffClubId="5082" name="1461 TRABZON" placeId="175" logo="011624_120x120.jpg" sportTypeId="1" website="www.1461trabzon.com.tr" region="TRABZON" city="61" country="90"/>
+<Team teamId="20" tffTeamId="000161" tffClubId="3603" name="ADANA DEMIRSPOR" placeId="1" logo="000161_120x120.jpg" sportTypeId="1" website="www.adanademirsporkulubu.org.tr" region="ADANA" city="01" country="90"/>
+<Team teamId="21" tffTeamId="000163" tffClubId="3605" name="ADANASPOR A.S." placeId="1" logo="000163_120x120.jpg" sportTypeId="1" website="www.adanaspor.com.tr/" region="ADANA" city="01" country="90"/>
+<Team teamId="22" tffTeamId="000151" tffClubId="3593" name="BOLUSPOR" placeId="42" logo="000151_120x120.jpg" sportTypeId="1" website="www.boluspor.org.tr" region="ANKARA" city="14" country="90"/>
+<Team teamId="23" tffTeamId="000109" tffClubId="109" name="BUCASPOR" placeId="3753" logo="000109_120x120.jpg" sportTypeId="1" website="www.bucaspor.org.tr" region="IZMIR" city="35" country="90"/>
+<Team teamId="24" tffTeamId="000189" tffClubId="3631" name="CAYKUR RIZESPOR A.S." placeId="3809" logo="000189_120x120.jpg" sportTypeId="1" website="www.caykurrizespor.org.tr" region="TRABZON" city="53" country="90"/>
+<Team teamId="25" tffTeamId="000080" tffClubId="81" name="DENIZLISPOR" placeId="55" logo="000080_120x120.jpg" sportTypeId="1" website="www.denizlispor.org.tr" region="IZMIR" city="20" country="90"/>
+<Team teamId="26" tffTeamId="000251" tffClubId="3672" name="GAZIANTEP B.S. BLD.SPOR" placeId="69" logo="000251_120x120.jpg" sportTypeId="1" website="www.gaziantepbbspor.com" region="ADANA" city="27" country="90"/>
+<Team teamId="27" tffTeamId="000269" tffClubId="3688" name="GOZTEPE A.S." placeId="118" logo="000269_120x120.jpg" sportTypeId="1" website="www.goztepe.org.tr" region="IZMIR" city="35" country="90"/>
+<Team teamId="28" tffTeamId="000156" tffClubId="3598" name="KARSIYAKA" placeId="3619" logo="000156_120x120.jpg" sportTypeId="1" website="www.ksk.org.tr" region="IZMIR" city="35" country="90"/>
+<Team teamId="29" tffTeamId="000170" tffClubId="3612" name="KARTALSPOR" placeId="89" logo="000170_120x120.jpg" sportTypeId="1" website="www.kartalspor.org" region="IST./MARMARA" city="34" country="90"/>
+<Team teamId="30" tffTeamId="000070" tffClubId="71" name="KAYSERI ERCIYESSPOR" placeId="3765" logo="000070_120x120.jpg" sportTypeId="1" website="www.erciyesspor.org.tr" region="KAYSERI" city="38" country="90"/>
+<Team teamId="31" tffTeamId="000111" tffClubId="110" name="MANISASPOR" placeId="137" logo="000111_120x120.jpg" sportTypeId="1" website="www.manisaspor.org.tr" region="IZMIR" city="45" country="90"/>
+<Team teamId="32" tffTeamId="000153" tffClubId="3595" name="MKE ANKARAGUCU" placeId="11" logo="000153_120x120.jpg" sportTypeId="1" website="www.ankaragucu.org.tr" region="ANKARA" city="06" country="90"/>
+<Team teamId="33" tffTeamId="000155" tffClubId="3597" name="SAMSUNSPOR" placeId="162" logo="000155_120x120.jpg" sportTypeId="1" website="www.samsunspor.org.tr" region="SAMSUN" city="55" country="90"/>
+<Team teamId="34" tffTeamId="000030" tffClubId="31" name="S.URFASPOR" placeId="3869" logo="000030_120x120.jpg" sportTypeId="1" website="www.sanliurfaspor.org" region="MALATYA" city="63" country="90"/>
+<Team teamId="35" tffTeamId="000143" tffClubId="141" name="TKI TAVSANLI LINYITSPOR" placeId="5342" logo="000143_120x120.jpg" sportTypeId="1" website="www.tavsanlilinyitspor.com" region="BURSA/MARMARA" city="43" country="90"/>
+<Team teamId="36" tffTeamId="000158" tffClubId="3600" name="TORKU KONYASPOR" placeId="473" logo="000158_120x120.jpg" sportTypeId="1" website="www.konyaspor.org.tr" region="ANKARA" city="42" country="90"/>
+</Teams>

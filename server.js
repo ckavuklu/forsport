@@ -51,23 +51,24 @@ app.use(function(req, res, next) {
 
 
 app.get("/", function(req, res) {
-  res.redirect("index.html");
+    res.redirect("index.html");
 });
 
 
 
 app.configure(function(){
-  app.use(express.methodOverride());
-  app.use(express.bodyParser());
-  app.use(express.static(__dirname + '/public'));
-  app.use(express.errorHandler({
-    dumpExceptions: true, 
-    showStack: true
-  }));
-  app.use(app.router);
+    app.use(express.methodOverride());
+    app.use(express.bodyParser());
+    app.use(express.static(__dirname + '/public'));
+    app.use(express.errorHandler({
+        dumpExceptions: true, 
+        showStack: true
+    }));
+    app.use(app.router);
 });
 
 app.get('/sportevents', sportevents.findAllSportEvents);
+app.get('/populatedb', sportevents.populatedb);
 app.get('/sportevents/:id', sportevents.findById);
 //app.post('/sportevents', sportevents.addSportEvent);
 app.post('/sportevents/all', sportevents.populateSportEvents);
@@ -99,7 +100,9 @@ function writeNonWalkingResponse(data, map, res) {
         }
     }
 
-    output = output.sort(function(a,b){return a.distance - b.distance});
+    output = output.sort(function(a,b){
+        return a.distance - b.distance
+        });
 
     var result = {
         points: output,
