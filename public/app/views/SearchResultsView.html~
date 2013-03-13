@@ -8,15 +8,17 @@
 
     <p style="padding-top:10px; padding-left: 10px; padding-right: 10px;">
         <% if ((typeof(events) != "undefined") && events.length > 0) { %>
-            <button id="mapView" class="btn btn-info" style="width: 100%;font-size: 2.25em;"><img src="assets/images/usa.png" />&nbsp;&nbsp;&nbsp;View Map</button>
+            <button id="mapView" class="btn btn-danger" style="width: 100%;font-size: 2.25em;"><img src="assets/images/turkey.png" />&nbsp;&nbsp;&nbsp;View Map</button>
         <% } %>
     </p>
 
 
+<% if (searchString.substring(0,4) != "TYPE") { %>
     <p style="padding-left: 10px; padding-right: 10px; margin:0px; font-size: 1.3em;">
         Results for search phrase "<span class="searchString"><%= HTMLUtil.encode( searchString ) %></span>"
         within <strong><% if (true) { %>a 20 minute walk time<% } else { %>2.5 miles<% } %></strong>
     </p>
+<% } %>
 </div>
 
 <% if ((typeof(events) != "undefined") && events.length > 0) { %>
