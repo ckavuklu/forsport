@@ -1,67 +1,133 @@
+var fs = require('fs'),
+xml2js = require('xml2js');
+var async = require('async');
+var sys = require('sys');
+
 var mongoose = require('mongoose'), Schema = mongoose.Schema;
 var db = mongoose.connect('mongodb://127.0.0.1:27017/test');
 
 /*Object Model*/
 var sportSchema = Schema({
     sportId: String
-    ,name: String
+    ,
+    name: String
 });
 
 var sportTypeSchema = Schema({
     sportTypeId: String
-    , name: String
+    , 
+    name: String
 });
 
 var placeTypeSchema = Schema({
     placeTypeId: String
-    , name: String
+    , 
+    name: String
 });
 
 var placeSchema = new Schema({
     placeId: String
-  , tffPlaceId: String
-  , name: String
-  , typeId : { type: Schema.ObjectId, ref: 'PlaceType' }
-  , address: String
-  , city: String
-  , country: String
-  , loc : {type: [Number], index: '2d'}
-  , photos: [String]
-  , capacity: String
+    , 
+    tffPlaceId: String
+    , 
+    name: String
+    , 
+    typeId : {
+        type: Schema.ObjectId, 
+        ref: 'PlaceType'
+    }
+    , 
+    address: String
+    , 
+    city: String
+    , 
+    country: String
+    , 
+    loc : {
+        type: [Number], 
+        index: '2d'
+    }
+    , 
+    photos: [String]
+    , 
+    capacity: String
 });
 
 var teamSchema = new Schema({
     teamId: String
-  , tffTeamId: String
-  , tffClubId: String
-  , name    : String
-  , placeId : { type: Schema.ObjectId, ref: 'Place' }
-  , sportTypeId : { type: Schema.ObjectId, ref: 'SportType' }
-  , logo   : [String]
-  , city    : String
-  , country : String
-  , website : String
-  , region : String
+    , 
+    tffTeamId: String
+    , 
+    tffClubId: String
+    , 
+    name    : String
+    , 
+    placeId : {
+        type: Schema.ObjectId, 
+        ref: 'Place'
+    }
+    , 
+    sportTypeId : {
+        type: Schema.ObjectId, 
+        ref: 'SportType'
+    }
+    , 
+    logo   : [String]
+    , 
+    city    : String
+    , 
+    country : String
+    , 
+    website : String
+    , 
+    region : String
 });
 
 var organizationSchema = new Schema({
-   gsId: String
-  , name : String
-  , start_date: Date
-  , end_date: Date
-  , sportsId     : { type: Schema.ObjectId, ref: 'SportType' }
+    gsId: String
+    , 
+    name : String
+    , 
+    start_date: Date
+    , 
+    end_date: Date
+    , 
+    sportsId     : {
+        type: Schema.ObjectId, 
+        ref: 'SportType'
+    }
 });
 
 var eventSchema = new Schema({
     week: String
-  , matchId : String
-  , hometeamId: { type: Schema.ObjectId, ref: 'Team' }
-  , awayteamId: { type: Schema.ObjectId, ref: 'Team' }
-  , eventDate: Date
-  , eventTime: String
-  , placeId     : { type: Schema.ObjectId, ref: 'Place' }
-  , eventTypeId     : { type: Schema.ObjectId, ref: 'SportType' }
-  , eventDescription     : String
+    , 
+    matchId : String
+    , 
+    hometeamId: {
+        type: Schema.ObjectId, 
+        ref: 'Team'
+    }
+    , 
+    awayteamId: {
+        type: Schema.ObjectId, 
+        ref: 'Team'
+    }
+    , 
+    eventDate: Date
+    , 
+    eventTime: String
+    , 
+    placeId     : {
+        type: Schema.ObjectId, 
+        ref: 'Place'
+    }
+    , 
+    eventTypeId     : {
+        type: Schema.ObjectId, 
+        ref: 'SportType'
+    }
+    , 
+    eventDescription     : String
 });
  
 var Sport = mongoose.model('Sport', sportSchema);
@@ -77,103 +143,279 @@ var Event = mongoose.model('Event', eventSchema);
 
 
 exports.findById = function(req, res) {
-	var id = req.params.id;
-	console.log('Retrieving event: ' + id);
-	db.collection('sportevents', function(err, collection) {
-	collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
-		res.send(item);
-	});
-});
+    var id = req.params.id;
+    console.log('Retrieving event: ' + id);
+    db.collection('sportevents', function(err, collection) {
+        collection.findOne({
+            '_id':new BSON.ObjectID(id)
+            }, function(err, item) {
+            res.send(item);
+        });
+    });
+};
+
+
+exports.populatedb = function(req, res) {
+
+    async.waterfall([
+
+        function(callback) {
+            sys.log("started");
+            callback(null,'Initialized!');
+
+        },
+
+        /*Placetypes inserted in an upsert manner.*/
+        function(arg1, callback) {
+            console.log(arg1);
+            var parser1 = new xml2js.Parser();
+            fs.readFile(__dirname + '/placetypes.xml', function(err, data) {
+                parser1.parseString(data, function (err, result) {
+                    var arr = result.PlaceTypes.PlaceType;
+                    for(var i=0; i<arr.length; i++) {
+                        var obje = arr[i]['$'];
+                        PlaceType.update({
+                            placeTypeId : obje.placeTypeId
+                            },{
+                            placeTypeId : obje.placeTypeId, 
+                            name: obje.name
+                        },{
+                            upsert: true
+                        }, function(err, data) {});
+                    }
+                });
+            });
+
+            callback(null,'PlaceTypes Inserted!');
+        },
+
+        /*Places inserted in an upsert manner. Their placetypeId references are also created.*/
+        function(arg1, callback) {
+            console.log(arg1);
+
+            var parser1 = new xml2js.Parser();
+            fs.readFile(__dirname + '/places.xml', function(err, data) {
+                parser1.parseString(data, function (err, result) {
+                    var arr = result.Places.Place;
+                    var objArray = new Array();
+                    for(var i=0; i<arr.length; i++) {
+                        var obje = arr[i]['$'];
+                        objArray.push(obje);
+                    }
+                    /* For each place read, create its reference to placetypes*/
+                    async.eachSeries(objArray, placeInsert, function(err) {
+                        async.waterfall([
+                            function(callback) {
+                                sys.log("started");
+                                callback(null,'Initialized!');
+
+                            },
+                            /*Sporttypes inserted in an upsert manner.*/
+                            function(arg1, callback) {
+                                console.log(arg1);
+
+                                var parser1 = new xml2js.Parser();
+                                fs.readFile(__dirname + '/sporttypes.xml', function(err, data) {
+                                    parser1.parseString(data, function (err, result) {
+                                        var arr = result.SportTypes.SportType;
+                                        for(var i=0; i<arr.length; i++) {
+                                            var obje = arr[i]['$'];
+                                            SportType.update({
+                                                sportTypeId : obje.sportTypeId
+                                                },{
+                                                sportTypeId : obje.sportTypeId,
+                                                name: obje.name
+                                            },{
+                                                upsert: true
+                                            }, function(err, data) {});
+                                        }
+                                    });
+                                });
+
+                                callback(null,'SportTypes Inserted!');
+                            },
+				
+                            function(arg1, callback) {
+                                console.log(arg1);
+
+
+                                var parser1 = new xml2js.Parser();
+                                fs.readFile(__dirname + '/teams.xml', function(err, data) {
+                                    parser1.parseString(data, function (err, result) {
+                                        var arr = result.Teams.Team;
+                                        var objArray = new Array();
+                                        for(var i=0; i<arr.length; i++) {
+                                            var obje = arr[i]['$'];
+                                            objArray.push(obje);
+                                        }
+							
+                                        async.eachSeries(objArray, teamInsert, function(err) {
+							
+                                            var parser1 = new xml2js.Parser();
+                                            fs.readFile(__dirname + '/events.xml', function(err, data) {
+                                                parser1.parseString(data, function (err, result) {
+                                                    var arr = result.Events.Event;
+                                                    var objArray = new Array();
+                                                    for(var i=0; i<arr.length; i++) {
+                                                        var obje = arr[i]['$'];
+                                                        objArray.push(obje);
+                                                    }
+									
+                                                    async.eachSeries(objArray, eventInsert, function(err) {
+                                                        if(err)
+                                                            sys.log(err);
+										
+                                                        sys.log("Events finished");
+                                                        res.send("Events finished");
+                                                    });
+                                                });
+                                            });
+
+							
+                                        //sys.log("team finished");
+							
+							
+							
+							
+							
+                                        });
+                                    });
+                                });
+
+
+                                callback(null,'Teams Inserted!');
+                            }
+
+                            ],
+                            function (err, caption) {
+                                console.log('Teams finished!!!!');
+                            }
+                            );
+                    });
+                });
+                callback(null,'Places Inserted!');
+            });
+        }
+        ]
+
+        ,
+        function (err, caption) {
+            console.log(caption);
+        }
+        );
+
 };
 
 var nearPlacesAndEvents = function (obj) {
-  console.log(obj);
+    console.log(obj);
 }
 
 
 var placeInsert = function(arg, callback) {
-	var obj = JSON.stringify(arg);
-	var obje = JSON.parse(obj);
+    var obj = JSON.stringify(arg);
+    var obje = JSON.parse(obj);
 	
-	async.waterfall([
-			function(callb) {
-			    callb(null, obje);
-			},
+    async.waterfall([
+        function(callb) {
+            callb(null, obje);
+        },
 
-			function(arg1, callb) {
-			  callback(null,'Place Inserted!');
-			}
-		],
-		function (err, caption) {
-      			callback();
-  		}
-	);
+        function(arg1, callb) {
+            callback(null,'Place Inserted!');
+        }
+        ],
+        function (err, caption) {
+            callback();
+        }
+        );
 }
 
 
 exports.findAllSportEvents = function(req, res) {
-	var searchString = req.query["q"];
-	var ll = req.query["ll"];
-	var tokens = ll.split(",");
-	var lat = 0, lon = 0;
-	var dist = 0;
-	var nowDate = new Date();
-	var nextDate = new Date();
-	var returnObject = new Array();
+    var searchString = req.query["q"];
+    var ll = req.query["ll"];
+    var tokens = ll.split(",");
+    var lat = 0, lon = 0;
+    var dist = 0;
+    var nowDate = new Date();
+    var nextDate = new Date();
+    var returnObject = new Array();
 
-	if (tokens.length == 2) {
-		lat = parseFloat(tokens[0]);
-		lon = parseFloat(tokens[1]);
-	}
+    if (tokens.length == 2) {
+        lat = parseFloat(tokens[0]);
+        lon = parseFloat(tokens[1]);
+    }
 
-	  if(searchString.substring(0,4) == "TYPE"){
+    if(searchString.substring(0,4) == "TYPE"){
 
-	    var searchToken = searchString.substring(5);
-	    console.log(searchToken);
+        var searchToken = searchString.substring(5);
+        console.log(searchToken);
 
-	    if(searchToken == "BESTNEARBY")
-{
-	     nextDate.setDate(nowDate.getDate()+7);
-	     dist = 100.0;
-	     Event.find({eventDate : { $gt: nowDate, $lt: nextDate }}).populate('placeId', null, {loc: {$maxDistance: dist/111.2, $near: [lat,lon]} }).populate('hometeamId').populate('awayteamId').populate('eventTypeId').exec(function(err, pl) { 
-	    res.send({events: pl});
-	    });
-	    }else{
-	    nextDate.setDate(nowDate.getDate()+60);
+        if(searchToken == "BESTNEARBY")
+        {
+            nextDate.setDate(nowDate.getDate()+7);
+            dist = 100.0;
+            Event.find({
+                eventDate : {
+                    $gt: nowDate, 
+                    $lt: nextDate
+                }
+            }).populate('placeId', null, {
+            loc: {
+                $maxDistance: dist/111.2, 
+                $near: [lat,lon]
+                }
+            }).populate('hometeamId').populate('awayteamId').populate('eventTypeId').exec(function(err, pl) { 
+res.send({
+
+            events: pl
+        });
+    });
+}else{
+    nextDate.setDate(nowDate.getDate()+60);
 	    
-	    dist = 100.0;
-	    Event.find({eventDate : { $gt: nowDate, $lt: nextDate }}).populate('placeId', null, {loc: {$maxDistance: dist/111.2, $near: [lat,lon]} }).populate('eventTypeId',null,{'name' : searchToken}).populate('hometeamId').populate('awayteamId').exec(function(err, pl) { 
-	    res.send({events: pl});
-	    });
+    dist = 100.0;
+    Event.find({
+        eventDate : {
+            $gt: nowDate, 
+            $lt: nextDate
+        }
+    }).populate('placeId', null, {
+    loc: {
+        $maxDistance: dist/111.2, 
+        $near: [lat,lon]
+        }
+    }).populate('eventTypeId',null,{
+    'name' : searchToken
+}).populate('hometeamId').populate('awayteamId').exec(function(err, pl) { 
+    res.send({
+        events: pl
+    });
+});
 
-	    }
+}
 	  
 	  
-	  }else{
-//User manually input the text or click on an item
-	     nextDate.setDate(nowDate.getDate()+60);
-	     console.log("searching for",searchString);
+}else{
+    //User manually input the text or click on an item
+    nextDate.setDate(nowDate.getDate()+60);
 	     
-	     Event.find({eventDate : { $gt: nowDate, $lt: nextDate }, eventDescription:{$regex: new RegExp(searchString, 'i') }}).populate('placeId').populate('hometeamId').populate('awayteamId').populate('eventTypeId').exec(function(err, pl) { 
-	    res.send({events: pl});
-	  });
+    Event.find({
+        eventDate : {
+            $gt: nowDate, 
+            $lt: nextDate
+        }, 
+        eventDescription:{
+            $regex: new RegExp(searchString, 'gi')
+        }
+    }).populate('placeId').populate('hometeamId').populate('awayteamId').populate('eventTypeId').exec(function(err, pl) { 
+    res.send({
+        events: pl
+    });
+});
 
 
-
-	  }
-
-
-
-       
-	/*db.collection('sportevents', function(err, collection) {
-		collection.find().toArray(function(err, items) {
-			var output = { points : items,
-				polygons:[[[32.658844,-117.095734],[32.664352,-117.110397],[32.665211,-117.110733],[32.668373,-117.109688],[32.672939,-117.106956],[32.682457,-117.100403],[32.680431,-117.090553],[32.675617,-117.080437],[32.6740959,-117.0789602],[32.672218,-117.078873],[32.660557,-117.08622],[32.6571542,-117.0905529],[32.658844,-117.095734]]]
-			}
-			console.log(output);
-			res.send(output);
-		});
-	});*/
+}
 };
 
 /*
@@ -260,173 +502,281 @@ function deg2rad(deg) {
 */
 
 exports.findPolygonArea = function(req, res) {
-	console.log('findPolygonArea');
-	db.collection('polygons', function(err, collection) {
-		collection.find().toArray(function(err, items) {
-			res.send(items);
-		});
-	});
+    db.collection('polygons', function(err, collection) {
+        collection.find().toArray(function(err, items) {
+            res.send(items);
+        });
+    });
 };
 
 
 exports.addSportEvent = function(req, res) {
-	var sportevent = req.body;
-	console.log('Adding event: ' + JSON.stringify(sportevent));
-	db.collection('sportevents', function(err, collection) {
-	collection.insert(sportevent, {safe:true}, function(err, result) {
-		if (err) {
-			res.send({'error':'An error has occurred'});
-		} else {
-			console.log('Success: ' + JSON.stringify(result[0]));
-			res.send(result[0]);
-		}
-	});
-});
+    var sportevent = req.body;
+    console.log('Adding event: ' + JSON.stringify(sportevent));
+    db.collection('sportevents', function(err, collection) {
+        collection.insert(sportevent, {
+            safe:true
+        }, function(err, result) {
+            if (err) {
+                res.send({
+                    'error':'An error has occurred'
+                });
+            } else {
+                console.log('Success: ' + JSON.stringify(result[0]));
+                res.send(result[0]);
+            }
+        });
+    });
 };
 
 exports.updateSportEvent = function(req, res) {
-	var id = req.params.id;
-	var sportEvent = req.body;
-	console.log('Updating event: ' + id);
-	console.log(JSON.stringify(sportEvent));
-	db.collection('sportevents', function(err, collection) {
-	collection.update({'_id':new BSON.ObjectID(id)}, sportevent, {safe:true}, function(err, result) {
-		if (err) {
-			console.log('Error updating event: ' + err);
-			res.send({'error':'An error has occurred'});
-		} else {
-			console.log('' + result + ' document(s) updated');
-			res.send(sportEvent);
-		}
-	});
-});
+    var id = req.params.id;
+    var sportEvent = req.body;
+    console.log('Updating event: ' + id);
+    console.log(JSON.stringify(sportEvent));
+    db.collection('sportevents', function(err, collection) {
+        collection.update({
+            '_id':new BSON.ObjectID(id)
+            }, sportevent, {
+            safe:true
+        }, function(err, result) {
+            if (err) {
+                console.log('Error updating event: ' + err);
+                res.send({
+                    'error':'An error has occurred'
+                });
+            } else {
+                console.log('' + result + ' document(s) updated');
+                res.send(sportEvent);
+            }
+        });
+    });
 };
 
 exports.deleteSportEvent = function(req, res) {
-	var id = req.params.id;
-	console.log('Deleting event: ' + id);
-	db.collection('sportevents', function(err, collection) {
-	collection.remove({'_id':new BSON.ObjectID(id)}, {safe:true}, function(err, result) {
-		if (err) {
-			res.send({'error':'An error has occurred - ' + err});
-		} else {
-			console.log('' + result + ' document(s) deleted');
-			res.send(req.body);
-		}
-	});
-});
+    var id = req.params.id;
+    console.log('Deleting event: ' + id);
+    db.collection('sportevents', function(err, collection) {
+        collection.remove({
+            '_id':new BSON.ObjectID(id)
+            }, {
+            safe:true
+        }, function(err, result) {
+            if (err) {
+                res.send({
+                    'error':'An error has occurred - ' + err
+                    });
+            } else {
+                console.log('' + result + ' document(s) deleted');
+                res.send(req.body);
+            }
+        });
+    });
 };
 
-/*--------------------------------------------------------------------------------------------------------------------*/
-// Populate database with sample data -- Only used once: the first time the application is started.
-// You'd typically not find this code in a real-life app, since the database would already exist.
-exports.populateSportEvents = function(req, res) {
-
-	var sportevents = [
-	{
-		"accessible_wheelchair":true,
-		"address":"925 E Plaza Blvd",
-		"alcohol": true,
-		"alcohol_beer_wine":true,
-		"attire":"casual",
-		"category":"Food & Beverage > Restaurants > Sushi",
-		"country":"US",
-		"cuisine":"Japanese, Sushi",
-		"factual_id":"317ced43-30c4-4e70-a3bd-3a5db4e45d88",
-		"groups_goodfor":true,
-		"kids_goodfor":true,
-		"latitude":41.1392,
-		"locality":"National City",
-		"longitude":29.1947,
-		"meal_deliver":false,
-		"meal_dinner":true,
-		"meal_lunch":true,
-		"meal_takeout":true,
-		"name":"Besiktas - Buca",
-		"parking":true,
-		"parking_lot":true,
-		"payment_cashonly":false,
-		"postcode":"91950",
-		"price":2,
-		"rating":3.5,
-		"region":"CA",
-		"reservations":true,
-		"seating_outdoor": false,
-		"status":"1",
-		"tel":"(619) 474-2918",
-		"distance":862.674,
-		"travel_time_seconds":995,
-		"travel_time_formatted":"12 mins",
-		"distance":"0.64"
-	},
-
-	{
-		"accessible_wheelchair":true,
-		"address":"925 E Plaza Blvd",
-		"alcohol": true,
-		"alcohol_beer_wine":true,
-		"attire":"casual",
-		"category":"Food & Beverage > Restaurants > Sushi",
-		"country":"US",
-		"cuisine":"Japanese, Sushi",
-		"factual_id":"317ced43-30c4-4e70-a3bd-3a5db4e45d88",
-		"groups_goodfor":true,
-		"kids_goodfor":true,
-		"latitude":41.048183,
-		"locality":"National City",
-		"longitude":28.953574,
-		"meal_deliver":false,
-		"meal_dinner":true,
-		"meal_lunch":true,
-		"meal_takeout":true,
-		"name":"Karsiyaka - Kasimpasa",
-		"parking":true,
-		"parking_lot":true,
-		"payment_cashonly":false,
-		"postcode":"91950",
-		"price":2,
-		"rating":3.5,
-		"region":"CA",
-		"reservations":true,
-		"seating_outdoor": false,
-		"status":"1",
-		"tel":"(619) 474-2918",
-		"distance":862.674,
-		"travel_time_seconds":995,
-		"travel_time_formatted":"17 mins",
-		"distance":"0.54"
-	}
-	];
-
-	var polygons = [[[32.658844,-117.095734],[32.664352,-117.110397],[32.665211,-117.110733],[32.668373,-117.109688],[32.672939,-117.106956],[32.682457,-117.100403],[32.680431,-117.090553],[32.675617,-117.080437],[32.6740959,-117.0789602],[32.672218,-117.078873],[32.660557,-117.08622],[32.6571542,-117.0905529],[32.658844,-117.095734]]];
 
 
 
-	db.collection('sportevents', function(err, collection) {
-		console.log('Before insertion');
-	  collection.insert(sportevents, {safe:true}, function(err, result) {
+/*Place Insert function. First it finds the placetype reference, and then insert the place together with its reference.*/
+var placeInsert = function(arg, callback) {
+    var obj = JSON.stringify(arg);
+    var obje = JSON.parse(obj);
 
-		if(err){
-			console.log(err);
-		}
+    async.waterfall([
+        /*Find referenced placetype*/
+        function(callb) {
+            PlaceType.findOne({
+                placeTypeId : obje.typeId
+                }, function(err, item){
+                callb(null, item, obje);
+            });
+        },
+
+        /*Upsert place together with reference*/
+        function(arg2,arg1, callb) {
+            Place.update({
+                placeId : arg1.placeId
+                },{
+                name: arg1.name , 
+                typeId : arg2, 
+                loc: [parseFloat(arg1.latitude),parseFloat(arg1.longitude)],
+                tffPlaceId:arg1.tffPlaceId,
+                address:arg1.address,
+                city:arg1.city,
+                country:arg1.country,
+                photos:arg1.photos
+                },{
+                upsert: true
+            }, function(err, data) {
+                if(err)
+                    console.log(err);
+
+            });
+            callback(null,'Place Inserted!');
+        }
+        ],
+        function (err, caption) {
+            callback();
+        }
+        );
+}
 
 
-	});
-	console.log('After insertion');
-});
 
 
 
-db.collection('polygons', function(err, collection) {
-	console.log('Before insertion');
-  collection.insert(polygons, {safe:true}, function(err, result) {
-	if(err){
-		console.log(err);
-	}
+/*Team Insert function. First it finds the sporttype and place references, and then insert the team together with their references.*/
+var teamInsert = function(arg, callback) {
+    var obj = JSON.stringify(arg);
+    var obje = JSON.parse(obj);
+
+    async.waterfall([
+        /*Find referenced place*/
+        function(callb) {
+            Place.findOne({
+                tffPlaceId : obje.placeId
+                }, function(err, item){
+                if(err)
+                    console.log(err);
+
+                callb(null, item, obje);
+            });
+        },
+
+        /*Find referenced sporttype*/
+        function(arg2,arg1, callb) {
+            SportType.findOne({
+                sportTypeId : arg1.sportTypeId
+                },function(err, item) {
+                if(err)
+                    console.log(err);
+
+                callb(null, item, arg2, arg1);
+
+            });
+        },
+
+        /*Upsert place together with references*/
+        function(arg2,arg1,argO, callb) {
+            Team.update({
+                teamId : argO.teamId
+                },{
+                name: argO.name , 
+                tffTeamId: argO.tffTeamId ,
+                tffClubId: argO.tffClubId ,
+                placeId : arg1, 
+                sportTypeId : arg2, 
+                logo: argO.logo,
+                city:argO.city,
+                region:argO.region,
+                website:argO.website,
+                country:argO.country
+                },{
+                upsert: true
+            }, function(err, data) {
+                if(err)
+                    console.log(err);
+
+            });
+            callback(null,'Team Inserted!');
+        }
+        ],
+        function (err, caption) {
+            callback();
+        }
+        );
+}
 
 
-});
-console.log('After insertion');
-});
+/*Team Insert function. First it finds the sporttype and place references, and then insert the team together with their references.*/
+var eventInsert = function(arg, callback) {
+    var obj = JSON.stringify(arg);
+    var obje = JSON.parse(obj);
 
-};
+    async.waterfall([
+        /*Find referenced place*/
+        function(callb) {
+            Place.findOne({
+                tffPlaceId : obje.placeID
+                }, function(err, item){
+                if(err)
+                    console.log("err",err);
+                callb(null, item, obje);
+            });
+        },
+
+        /*arg2: place, arg1:object*/
+        function(arg2, arg1, callb) {
+            Team.findOne({
+                tffClubId : arg1.hometeamID
+                },function(err, item) {
+                if(err)
+                    console.log(err);
+                callb(null, item, arg2, arg1);
+
+            });
+        },
+
+        /*arg2: homeTeamId, arg1:place, arg0:object*/
+        function(arg2,arg1,arg0, callb) {
+            Team.findOne({
+                tffClubId : arg0.awayteamID
+                },function(err, item) {
+                if(err)
+                    console.log(err);
+
+                callb(null, item, arg2, arg1,arg0);
+
+            });
+        },
+
+        /*arg3: sportTypeId,arg2: homeTeamId, arg1:place, arg0:object*/
+        function(arg3,arg2,arg1,arg0, callb) {
+            SportType.findOne({
+                sportTypeId : arg0.eventtypeID
+                },function(err, item) {
+                if(err)
+                    console.log(err);
+
+                callb(null, item, arg3, arg2, arg1,arg0);
+
+            });
+        },
+
+
+        /*Upsert place together with references*/
+        /*arg4: sportTypeId,arg3: awayTeamId, arg2: homeTeamId, arg1:place, arg0:object*/
+        function(arg4,arg3,arg2,arg1,argO, callb) {
+
+            //new Date(1995,11,17)
+            var str=argO.eventdate;
+            var strTime=argO.eventtime;
+            var dateArray=str.split(".",3);
+            var timeArray=strTime.split(":",2);
+            console.log(dateArray[2],dateArray[1],dateArray[0],timeArray[0],timeArray[1]);
+            Event.update({
+                matchId : argO.matchID
+                },{
+                week: argO.week , 
+                hometeamId: arg2 ,
+                awayteamId: arg3 ,
+                eventTypeId: arg4 ,
+                placeId : arg1, 
+                eventDate : new Date(dateArray[2],dateArray[1]-1,dateArray[0],timeArray[0],timeArray[1],0), 
+                eventTime : argO.eventtime, 
+                eventDescription: arg2.name + '-' + arg3.name + '-' +arg1.name + '-' +arg4.name
+                },{
+                upsert: true
+            }, function(err, data) {
+                if(err)
+                    console.log(err);
+            });
+            callb(null,'Event Inserted!');
+        }
+        ],
+        function (err, caption) {
+            callback();
+        }
+        );
+}
+

@@ -37,7 +37,7 @@ window.ItemDetailView = Backbone.View.extend({
 
             var map = L.map('map'+self.model.placeId.placeId, {
                 center: [window.GeoWatcher.position.latitude, window.GeoWatcher.position.longitude],
-                zoom: 15
+                zoom: 20
             });
 
 

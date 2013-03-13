@@ -366,7 +366,8 @@ exports.findAllSportEvents = function(req, res) {
                 $near: [lat,lon]
                 }
             }).populate('hometeamId').populate('awayteamId').populate('eventTypeId').exec(function(err, pl) { 
-        res.send({
+res.send({
+
             events: pl
         });
     });
@@ -398,7 +399,6 @@ exports.findAllSportEvents = function(req, res) {
 }else{
     //User manually input the text or click on an item
     nextDate.setDate(nowDate.getDate()+60);
-    console.log("searching for",searchString);
 	     
     Event.find({
         eventDate : {
@@ -406,10 +406,9 @@ exports.findAllSportEvents = function(req, res) {
             $lt: nextDate
         }, 
         eventDescription:{
-            $regex: new RegExp(searchString, 'i')
+            $regex: new RegExp(searchString, 'gi')
         }
     }).populate('placeId').populate('hometeamId').populate('awayteamId').populate('eventTypeId').exec(function(err, pl) { 
-    console.log(pl);
     res.send({
         events: pl
     });
@@ -503,7 +502,6 @@ function deg2rad(deg) {
 */
 
 exports.findPolygonArea = function(req, res) {
-    console.log('findPolygonArea');
     db.collection('polygons', function(err, collection) {
         collection.find().toArray(function(err, items) {
             res.send(items);
