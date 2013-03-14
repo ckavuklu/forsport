@@ -6,17 +6,18 @@ window.SearchManager = {
     search:function (searchString, successCallback, errorCallback) {
         var searchURL = this.apiUrl + "q=" + encodeURIComponent(searchString) + "&ll=" + window.GeoWatcher.position.latitude + "," + window.GeoWatcher.position.longitude + "&d=" + new Date().getTime();
 
+
         $.ajax({
             timeout:30000,
             url:searchURL,
             dataType: "text",
             success:function(result){
                 if ( successCallback ) {
-		  var obje = JSON.parse(result);
-		  obje.events =obje.events.filter(function(v) { return v.placeId == null? false: true;});
-		  obje.events =obje.events.filter(function(v) { return v.hometeamId == null? false: true;});
-		  obje.events =obje.events.filter(function(v) { return v.awayteamId == null? false: true;});
-		  obje.events =obje.events.filter(function(v) { return v.eventTypeId == null? false: true;});
+								  var obje = JSON.parse(result);
+								  obje.events =obje.events.filter(function(v) { return v.placeId == null? false: true;});
+								  obje.events =obje.events.filter(function(v) { return v.hometeamId == null? false: true;});
+								  obje.events =obje.events.filter(function(v) { return v.awayteamId == null? false: true;});
+								  obje.events =obje.events.filter(function(v) { return v.eventTypeId == null? false: true;});
                   successCallback( JSON.stringify(obje));
                 }
             },

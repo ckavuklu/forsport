@@ -1,7 +1,6 @@
 $(document).ready(function() {
    
     window.GeoWatcher.watch();
-
     loadTemplates( appTemplatesLoaded );
 });
 
@@ -13,6 +12,8 @@ document.addEventListener("load", onDeviceReady, false);
 function onDeviceReady() {
 
     window.GeoWatcher.watch();
+
+	 
 
     loadTemplates( appTemplatesLoaded );
 }

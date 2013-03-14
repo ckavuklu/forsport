@@ -69,7 +69,6 @@
 <script src="app/util/GeoWatcher.js"></script>
 <script src="app/util/HTMLUtil.js"></script>
 <script src="app/util/POIUtil.js"></script>
-<script src="app/util/moment.js"></script>
 <script src="app/model/SearchManager.js"></script>
 <script src="app/main.js"></script>
 
