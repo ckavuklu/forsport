@@ -2,15 +2,47 @@
     <div id="bar" style="width:<%= 5 %>%; border-top: 1px solid <%=  __svgColor  %>;"></div>
 <% } %-->
 
-<div id="walker" style="position:absolute; top:50%; right:20px; text-align: center">
-    <div id="wwrapper" style="margin-top:-15px;">
-    	<p style="color:#<%=  __svgColor  %>"><strong><%= moment(eventDate).fromNow() %> : <%= eventTime %></strong></p>
-        <!--img src="assets/images/walk/<%=  __svgColor  %>.png" />
-            <div id="time" style="color:#<%=  __svgColor  %>"><%= 10 %></div-->
-    </div>
+<div class="photonail">
+<a >
+<img src="http://www.placehold.it/200x200" style="width:200px;height:200px;">
+</a>
+	<div class="pineventname">
+    <span class="muted"><strong><%= hometeamId.name %></strong></span>
+    <div class="sporthr"/>
+    <span class="muted"><strong><%= awayteamId.name %></strong></span><br><br>
+</div>
+<div class="pineventdate">
+    <span class="muted"><strong><%= moment(eventDate).calendar() %></strong></span>
 </div>
 
-<!--eventDate.substring(0,10)-->
+
+
+
+<!--a class="pull-left"">
+
+
+
+<img class="media-object" src="assets/images/teams/<%=awayteamId.tffTeamId%>_120x120.jpg">
+</a-->
+<!--div class="media-body">
+<h4 class="media-heading"><%= hometeamId.name %> - <%= awayteamId.name %></h4>
+<div class="muted">
+	<p><strong><%= placeId.name %></p></strong>
+
+	<div>
+<strong><%= moment(eventDate).calendar() %></strong>
+</div-->
+</div>
+
+
+
+
+
+<!--div id="walker" style="position:absolute; top:50%; right:20px; text-align: center">
+    <div id="wwrapper" style="margin-top:-15px;">
+    	<p style="color:#<%=  __svgColor  %>"><strong><%= moment(eventDate).calendar() %> : <%= eventTime %></strong></p>
+    </div>
+</div>
 
 <table>
 	<tr>
@@ -35,4 +67,4 @@
 <div class="muted">
 	<p><strong><%= placeId.name %></p></strong>
 
-	<div>
+	<div-->

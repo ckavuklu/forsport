@@ -106,6 +106,44 @@ body {
 }
 
 
+
+
+.photonail {
+    border: medium none;
+    box-shadow: none;
+    display: block;
+    width:90%;
+    line-height: 1;
+    position: relative;
+    z-index: 1; /* Added Lower Z-Index Value */
+}
+
+.pineventname {
+    left: 10px; /* Added Left Position */ 
+    width:90%;
+    position: absolute; /* Added Position */
+    top: 80%; /* Added Top Position */        
+    z-index: 2; /* Added Higher Z-Index Value from thumbnail div */
+}
+
+.pineventdate {
+    left: 10px; /* Added Left Position */ 
+    width:90%;
+    position: absolute; /* Added Position */
+    top: 5px; /* Added Top Position */        
+    z-index: 2; /* Added Higher Z-Index Value from thumbnail div */
+}
+
+.sporthr {
+    border: none;
+    border-bottom:2px solid #FFFFFF; 
+    /*border-top:1px solid #dcdcdc; */
+    clear:both; 
+    height:2px; 
+    width: 90%;
+}
+
+
 /*ViewNavigator Styles*/
 
 .viewNavigator_header {
