@@ -28,7 +28,7 @@ var placeTypeSchema = Schema({
 var placeSchema = new Schema({
     placeId: String
     , 
-    tffPlaceId: String
+    refPlaceId: String
     , 
     name: String
     , 
@@ -48,17 +48,14 @@ var placeSchema = new Schema({
         index: '2d'
     }
     , 
-    photos: [String]
-    , 
+     
     capacity: String
 });
 
 var teamSchema = new Schema({
     teamId: String
     , 
-    tffTeamId: String
-    , 
-    tffClubId: String
+    refTeamId: String
     , 
     name    : String
     , 
@@ -72,19 +69,15 @@ var teamSchema = new Schema({
         ref: 'SportType'
     }
     , 
-    logo   : [String]
-    , 
     city    : String
     , 
     country : String
     , 
     website : String
-    , 
-    region : String
 });
 
 var organizationSchema = new Schema({
-    gsId: String
+    orgId: String
     , 
     name : String
     , 
@@ -127,7 +120,12 @@ var eventSchema = new Schema({
         ref: 'SportType'
     }
     , 
-    eventDescription     : String
+    eventDescription     : String,
+
+    orgId     : {
+        type: Schema.ObjectId, 
+        ref: 'Organization'
+    }
 });
  
 var Sport = mongoose.model('Sport', sportSchema);
@@ -227,7 +225,35 @@ exports.populatedb = function(req, res) {
                                                 name: obje.name
                                             },{
                                                 upsert: true
-                                            }, function(err, data) {});
+                                            }, function(err, data) {
+					    
+					    	var parser1 = new xml2js.Parser();
+            fs.readFile(__dirname + '/organizations.xml', function(err, data) {
+                parser1.parseString(data, function (err, result) {
+                    var arr = result.Organizations.Organization;
+                    for(var i=0; i<arr.length; i++) {
+                        var obje = arr[i]['$'];
+                        Organization.update({
+			orgId : obje.orgID
+                            },{
+                            orgId : obje.orgID,
+                            name: obje.name
+                        },{
+                            upsert: true
+                        }, function(err, data) {});
+                    }
+                });
+            });					    
+					    
+					    
+					    
+					    
+					    
+					    
+					    
+					    
+					    
+					    });
                                         }
                                     });
                                 });
@@ -600,11 +626,10 @@ var placeInsert = function(arg, callback) {
                 name: arg1.name , 
                 typeId : arg2, 
                 loc: [parseFloat(arg1.latitude),parseFloat(arg1.longitude)],
-                tffPlaceId:arg1.tffPlaceId,
+                refPlaceId:arg1.refPlaceId,
                 address:arg1.address,
                 city:arg1.city,
-                country:arg1.country,
-                photos:arg1.photos
+                country:arg1.country
                 },{
                 upsert: true
             }, function(err, data) {
@@ -634,7 +659,7 @@ var teamInsert = function(arg, callback) {
         /*Find referenced place*/
         function(callb) {
             Place.findOne({
-                tffPlaceId : obje.placeId
+                refPlaceId : obje.placeId
                 }, function(err, item){
                 if(err)
                     console.log(err);
@@ -662,13 +687,10 @@ var teamInsert = function(arg, callback) {
                 teamId : argO.teamId
                 },{
                 name: argO.name , 
-                tffTeamId: argO.tffTeamId ,
-                tffClubId: argO.tffClubId ,
+                refTeamId: argO.refTeamId ,
                 placeId : arg1, 
                 sportTypeId : arg2, 
-                logo: argO.logo,
                 city:argO.city,
-                region:argO.region,
                 website:argO.website,
                 country:argO.country
                 },{
@@ -697,7 +719,7 @@ var eventInsert = function(arg, callback) {
         /*Find referenced place*/
         function(callb) {
             Place.findOne({
-                tffPlaceId : obje.placeID
+                refPlaceId : obje.placeID
                 }, function(err, item){
                 if(err)
                     console.log("err",err);
@@ -708,7 +730,7 @@ var eventInsert = function(arg, callback) {
         /*arg2: place, arg1:object*/
         function(arg2, arg1, callb) {
             Team.findOne({
-                tffClubId : arg1.hometeamID
+                refTeamId : arg1.hometeamID
                 },function(err, item) {
                 if(err)
                     console.log(err);
@@ -720,7 +742,7 @@ var eventInsert = function(arg, callback) {
         /*arg2: homeTeamId, arg1:place, arg0:object*/
         function(arg2,arg1,arg0, callb) {
             Team.findOne({
-                tffClubId : arg0.awayteamID
+                refTeamId : arg0.awayteamID
                 },function(err, item) {
                 if(err)
                     console.log(err);
@@ -743,10 +765,25 @@ var eventInsert = function(arg, callback) {
             });
         },
 
+	        /*Upsert place together with references*/
+        /*arg4: sportTypeId,arg3: awayTeamId, arg2: homeTeamId, arg1:place, arg0:object*/
+        function(arg4,arg3,arg2,arg1,arg0, callb) {
+	 Organization.findOne({
+                orgId : arg0.orgId
+                },function(err, item) {
+                if(err)
+                    console.log(err);
+
+                callb(null, item, arg4, arg3, arg2, arg1,arg0);
+
+            });
+
+	},
+
 
         /*Upsert place together with references*/
-        /*arg4: sportTypeId,arg3: awayTeamId, arg2: homeTeamId, arg1:place, arg0:object*/
-        function(arg4,arg3,arg2,arg1,argO, callb) {
+        /*arg5: orgId,arg4: sportTypeId,arg3: awayTeamId, arg2: homeTeamId, arg1:place, arg0:object*/
+        function(arg5,arg4,arg3,arg2,arg1,argO, callb) {
 
             //new Date(1995,11,17)
             var str=argO.eventdate;
@@ -761,6 +798,7 @@ var eventInsert = function(arg, callback) {
                 hometeamId: arg2 ,
                 awayteamId: arg3 ,
                 eventTypeId: arg4 ,
+                orgId: arg5 ,
                 placeId : arg1, 
                 eventDate : new Date(dateArray[2],dateArray[1]-1,dateArray[0],timeArray[0],timeArray[1],0), 
                 eventTime : argO.eventtime, 

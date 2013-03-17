@@ -54,9 +54,7 @@ window.SearchResultsView = Backbone.View.extend({
         
         target.addClass( "listSelected" );
         var id = target.attr( "id" );
-        console.log( 'ID: ',id );
         var poi = SearchManager.findPointById( id, this.model.events );
-        console.log( 'POI: ',poi );
         
         var detailView = new ItemDetailView({model:poi})
         window.viewNavigator.pushView( detailView );

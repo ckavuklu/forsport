@@ -4,12 +4,20 @@
     </div>
 
     <div class="padded">
-        <h1 class="green shadow"><%= name %></h1>
-       
-            <div><span class="label">Web</span>&nbsp;<a id="website" href="<%= eventTime %>" target="_blank"><%= eventTime %></a></div>
-
+        <div class="green shadow pagination-centered">
+					<span5 id="hometeam" style="font-size:16px"><strong><%= hometeamId.name %></strong></span5>
+					<span2 id="eventName">
+				<img src="assets/images/teams/<%=hometeamId.refTeamId%>_120x120.jpg" style="width:40px;height:40px"/>
+				<strong>-</strong>
+				<img src="assets/images/teams/<%=awayteamId.refTeamId%>_120x120.jpg" style="width:40px;height:40px"/>
+				</span2>
+					<span5 id="awayteam" style="font-size:16px"><strong><%= awayteamId.name %></strong></span5>
+				</div>
+        <strong><%= placeId.name %></strong>
     </div>
+    
 </div>
+
 
 <div class="gpu" style="background: white;">
     <div id='mapContainer' class="detailMapContainer" style='width:<%= mapSize %>px; height:<%= mapSize/2 %>px'>

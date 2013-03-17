@@ -10,6 +10,7 @@ window.ListItemView = Backbone.View.extend({
         this.template = _.template( templates.listItemView ),
         this.render();
         this.view = this.$el;
+        
     },  
     
     events:{
@@ -17,8 +18,8 @@ window.ListItemView = Backbone.View.extend({
     
     render:function (eventName) {
         var model = this.model;
+        //this.$el.addClass( "slideshow-overlay" );
         this.$el.html( this.template( model ));
-	console.log('ListItemView ID:',model.placeId.placeId);
         this.$el.attr('id', model.placeId.placeId );
         return this;
     }

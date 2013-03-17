@@ -1,21 +1,70 @@
-<% if (true) { %>
+<!--% if (true) { %>
     <div id="bar" style="width:<%= 5 %>%; border-top: 1px solid <%=  __svgColor  %>;"></div>
-<% } %>
+<% } %-->
 
-<div id="walker" style="position:absolute; top:50%; right:20px; text-align: center">
-    <div id="wwrapper" style="margin-top:-34px;">
-        <img src="assets/images/walk/<%=  __svgColor  %>.png" />
-            <div id="time" style="color:#<%=  __svgColor  %>"><%= 10 %></div>
+<div class="photonail" style="width:300px;height:200px;">
+<!--div class="slideshow-overlay"></div-->
+
+<img src="assets/images/generic-football.jpg" >
+	<div class="pineventname">
+    <span ><strong><%= hometeamId.name %></strong></span>
+    <div class="sporthr"/>
+    <span ><strong><%= awayteamId.name %></strong></span>
+</div>
+<div class="pineventdate">
+    <span ><strong><%= moment(eventDate).calendar() %></strong></span>
+</div>
+
+
+
+
+<!--a class="pull-left"">
+
+
+
+<img class="media-object" src="assets/images/teams/<%=awayteamId.tffTeamId%>_120x120.jpg">
+</a-->
+<!--div class="media-body">
+<h4 class="media-heading"><%= hometeamId.name %> - <%= awayteamId.name %></h4>
+<div class="muted">
+	<p><strong><%= placeId.name %></p></strong>
+
+	<div>
+<strong><%= moment(eventDate).calendar() %></strong>
+</div-->
+</div>
+
+
+
+
+
+<!--div id="walker" style="position:absolute; top:50%; right:20px; text-align: center">
+    <div id="wwrapper" style="margin-top:-15px;">
+    	<p style="color:#<%=  __svgColor  %>"><strong><%= moment(eventDate).calendar() %> : <%= eventTime %></strong></p>
     </div>
 </div>
 
-<div id="overlay">
-<img src="assets/images/teams/<%=hometeamId.tffTeamId%>_120x120.jpg" style="width:40px;height:40px"/>
-    <strong id="eventName" class="muted"><%= hometeamId.name %> - <%= awayteamId.name %></strong>
-<img src="assets/images/teams/<%=awayteamId.tffTeamId%>_120x120.jpg"  style="width:40px;height:40px"/>
-<br/>
-    <span id="placename"><%= placeId.name %> <br/>
-    <span id="dateTime"><%= eventDate %> <br/>
-    <br/>
+<table>
+	<tr>
+<td style="width:150px">
+	<p class="pull-left"><h4 id="eventName"><%= hometeamId.name %></h4></p>
+	
+</td>
+<td style="width:50px">
+<img src="assets/images/teams/<%=hometeamId.tffTeamId%>_120x120.jpg" style="width:40px;height:40px" class="pull-right"/>
+</td>
+<td style="width:30px" class="pagination-centered">
+<p><strong>-</strong></p>
+</td>
+<td style="width:50px">
+<img src="assets/images/teams/<%=awayteamId.tffTeamId%>_120x120.jpg" style="width:40px;height:40px" class="pull-left"/>
+</td>
+<td style="width:150px">
+	<p class="pull-left"><h4 id="eventName"><%= awayteamId.name %></h4></p>
+</td>
+</tr>
+<table>
+<div class="muted">
+	<p><strong><%= placeId.name %></p></strong>
 
-</div>
+	<div-->
