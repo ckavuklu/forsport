@@ -18,7 +18,7 @@ window.ListItemView = Backbone.View.extend({
     
     render:function (eventName) {
         var model = this.model;
-        //this.$el.addClass( "slideshow-overlay" );
+        this.$el.addClass( "span4" );
         this.$el.html( this.template( model ));
         this.$el.attr('id', model.placeId.placeId );
         return this;

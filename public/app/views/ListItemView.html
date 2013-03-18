@@ -2,20 +2,26 @@
     <div id="bar" style="width:<%= 5 %>%; border-top: 1px solid <%=  __svgColor  %>;"></div>
 <% } %-->
 
-<div class="photonail">
+<div class="thumbnail"> 
+<!--div class="photonail"-->
 <!--div class="slideshow-overlay"></div-->
 
-<img src="assets/images/generic-football.jpg" style="width:300px;height:200px;">
-	<div class="pineventname">
+<img src="assets/images/generic-football.jpg">
+	<!--div class="pineventname">
     <span ><strong><%= hometeamId.name %></strong></span>
     <div class="sporthr"/>
     <span ><strong><%= awayteamId.name %></strong></span>
 </div>
 <div class="pineventdate">
     <span ><strong><%= moment(eventDate).calendar() %></strong></span>
-</div>
-
-
+</div-->
+<div class="caption">  
+              <h5><%= hometeamId.name %> - <%= awayteamId.name %></h5>  
+              <!--p><strong><%= hometeamId.name %> - <%= awayteamId.name %></strong></p-->  
+              <p><%= moment(eventDate).calendar() %></p>
+              <p><a href="#" class="btn btn-success">Check-In</a> <a href="#" class="btn btn-warning">Share</a></p>  
+            </div>  
+<!--/div-->
 
 
 <!--a class="pull-left"">

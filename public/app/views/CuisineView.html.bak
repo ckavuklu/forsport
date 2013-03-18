@@ -6,7 +6,7 @@
 
     <li class="span4">
     	<div class="thumbnail"> 
-<img src="assets/images/item-football.jpg">
+<img src="assets/images/generic-football.jpg">
 <div class="caption">  
               <h5>Football</h5>  
             </div>      	
@@ -16,7 +16,7 @@
 
     <li class="span4">
     	<div class="thumbnail"> 
-<img src="assets/images/item-basketball.jpg">
+<img src="assets/images/generic-basketball.jpg">
 <div class="caption">  
               <h5>Basketball</h5>  
             </div>      	

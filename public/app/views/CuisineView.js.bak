@@ -40,7 +40,7 @@ window.CuisineView = Backbone.View.extend({
         target.addClass( "listSelected" );
 
 
-        var view = new SearchView( {searchString:'TYPE:'+target.text().replace(/^\s+|\s+$/g,"")} );
+        var view = new SearchView( {searchString:'TYPE:'+target.text()} );
         window.viewNavigator.pushView( view );
     }
 });

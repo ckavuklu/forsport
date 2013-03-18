@@ -2,25 +2,31 @@
     <div id="bar" style="width:<%= 5 %>%; border-top: 1px solid <%=  __svgColor  %>;"></div>
 <% } %-->
 
-<div class="photonail">
-<a >
-<img src="assets/images/teams/<%=awayteamId.tffTeamId%>_120x120.jpg" style="width:200px;height:200px;">
-</a>
-	<div class="pineventname">
-    <span class="muted"><strong><%= hometeamId.name %></strong></span>
+<div class="thumbnail"> 
+<!--div class="photonail"-->
+<!--div class="slideshow-overlay"></div-->
+
+<img src="assets/images/generic-football.jpg">
+	<!--div class="pineventname">
+    <span ><strong><%= hometeamId.name %></strong></span>
     <div class="sporthr"/>
-    <span class="muted"><strong><%= awayteamId.name %></strong></span><br><br>
+    <span ><strong><%= awayteamId.name %></strong></span>
 </div>
 <div class="pineventdate">
-    <span class="muted"><strong><%= moment(eventDate).calendar() %></strong></span>
-</div>
-
-
+    <span ><strong><%= moment(eventDate).calendar() %></strong></span>
+</div-->
+<div class="caption">  
+              <h5><%= hometeamId.name %> - <%= awayteamId.name %></h5>  
+              <!--p><strong><%= hometeamId.name %> - <%= awayteamId.name %></strong></p-->  
+              <p><%= moment(eventDate).calendar() %></p>
+              <p><a href="#" class="btn btn-success">Buy</a> <a href="#" class="btn btn-warning">Try</a></p>  
+            </div>  
+<!--/div-->
 
 
 <!--a class="pull-left"">
 
-http://www.placehold.it/200x200
+
 
 <img class="media-object" src="assets/images/teams/<%=awayteamId.tffTeamId%>_120x120.jpg">
 </a-->
