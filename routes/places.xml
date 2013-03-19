@@ -58,20 +58,20 @@
     <Place placeId="57" refPlaceId="149" name="Mugla Ataturk" address="Emirbeyazit Mh. 48000 Mugla,Turkey" latitude="37.212233" longitude="28.363756" capacity="7755" city="48" country="90" typeId="1" />
     <Place placeId="58" refPlaceId="202" name="Dr.NecmettinSeyhoglu" address="Yenisehir Mh. 78200 Karabuk , Turkey" latitude="41.204508" longitude="32.620162" capacity="7593" city="78" country="90" typeId="1" />
     <Place placeId="59" refPlaceId="95" name="Mimar Yahya Bas" address="Sanayi Mh. 34165 Gungoren,Istanbul" latitude="41.023557" longitude="28.880259" capacity="7589" city="34" country="90" typeId="1" />
-    <Place placeId="60" refPlaceId="125" name="Kirsehir Ahi" address="Nasuhdede Mh. 40100 Kirsehir,Turkey" latitude="39.147764" longitude="34.155855" capacity="7500" city="79" country="90" typeId="1" />
+    <Place placeId="60" refPlaceId="125" name="Kirsehir Ahi" address="Nasuhdede Mh. 40100 Kirsehir,Turkey" latitude="39.147764" longitude="34.155855" capacity="7500" city="40" country="90" typeId="1" />
     <Place placeId="61" refPlaceId="89" name="Radyo Seymen Kartal Stadyumu" address="Karliktepe Mh. 34870 Kartal,Istanbul " latitude="40.891946" longitude="29.190925" capacity="7195" city="34" country="90" typeId="1" />
     <Place placeId="62" refPlaceId="204" name="7 Ocak" address="Esenevler Mh. 80010 Osmaniye,Osmaniye" latitude="37.073275" longitude="36.239752" capacity="6635" city="80" country="90" typeId="1" />
     <Place placeId="63" refPlaceId="127" name="Darica Ilce" address="Nene Hatun Mh. 41700 Darica,Kocaeli " latitude="40.776837" longitude="29.378234" capacity="6500" city="41" country="90" typeId="1" />
     <Place placeId="64" refPlaceId="102" name="Vefa" address="Dervis Ali Mh., 34087 Fatih,Istanbul " latitude="41.027873" longitude="28.939029" capacity="6500" city="34" country="90" typeId="1" />
-    <Place placeId="65" refPlaceId="112" name="Buca Ilce" address="Dumlupinar Mh., 35678 Izmir , Turkey" latitude="38.384198" longitude="27.169575" capacity="6231" city="35" country="90" typeId="1" />
+    <Place placeId="65" refPlaceId="112" name="Buca Ilce" address="Dumlupinar Mh., 35678 Izmir, Turkey" latitude="38.384198" longitude="27.169575" capacity="6231" city="35" country="90" typeId="1" />
     <Place placeId="66" refPlaceId="78" name="Hatay Ataturk" address="Kanatli Mh., 31030 Hatay" latitude="36.211489" longitude="36.158084" capacity="6015" city="31" country="90" typeId="1" />
-    <Place placeId="67" refPlaceId="183" name="Usak 1 Eylul" address="Kurtulus Mh., 64100 Usak , Turkey" latitude="38.672092" longitude="29.401354" capacity="5944" city="64" country="90" typeId="1" />
-    <Place placeId="68" refPlaceId="174" name="Gaziosmanpasa" address="Merkez Mh., 34245 Gaziosmanpasa,Istanbul" latitude="41.060901" longitude="28.908514" capacity="5762" city="60" country="90" typeId="1" />
+    <Place placeId="67" refPlaceId="183" name="Usak 1 Eylul" address="Kurtulus Mh., 64100 Usak, Turkey" latitude="38.672092" longitude="29.401354" capacity="5944" city="64" country="90" typeId="1" />
+    <Place placeId="68" refPlaceId="174" name="Gaziosmanpasa" address="Yeni Mh., 60200 Tokat" latitude="40.328115" longitude="36.555971" capacity="5762" city="60" country="90" typeId="1" />
     <Place placeId="69" refPlaceId="144" name="21 Kasim" address="Cumhuriyet Mh., 47100 Mardin" latitude="37.31567" longitude="40.72698" capacity="5700" city="47" country="90" typeId="1" />
     <Place placeId="70" refPlaceId="166" name="Siirt Ataturk" address="Evren Mh., 56000 Siirt" latitude="37.929068" longitude="41.937382" capacity="5650" city="56" country="90" typeId="1" />
     <Place placeId="71" refPlaceId="93" name="Beylerbeyi 75.Yil" address="Beylerbeyi Mh., 34676 uskudar,Istanbul, Turkiye" latitude="41.038983" longitude="29.045835" capacity="5500" city="34" country="90" typeId="1" />
     <Place placeId="72" refPlaceId="10" name="Merzifon Ilce" address="Derman Sk. 05300 Merzifon,Amasya, Turkiye" latitude="40.873675" longitude="35.4564" capacity="5450" city="5" country="90" typeId="1" />
-    <Place placeId="73" refPlaceId="193" name="Kirikkale Fikret Karabudak" address="Fabrikalar Mh., 71100 Kirikkale, Turkiye" latitude="39.835852" longitude="33.503703" capacity="5402" city="79" country="90" typeId="1" />
+    <Place placeId="73" refPlaceId="193" name="Kirikkale Fikret Karabudak" address="Fabrikalar Mh., 71100 Kirikkale, Turkiye" latitude="39.835852" longitude="33.503703" capacity="5402" city="71" country="90" typeId="1" />
     <Place placeId="74" refPlaceId="36" name="Bandirma 17 Eylul" address="Yigitler Sk 600 Evler Mh., 10200 Bandirma,Balikesir, Turkiye" latitude="40.33817" longitude="27.984731" capacity="5400" city="9" country="90" typeId="1" />
     <Place placeId="75" refPlaceId="172" name="General Basri Saran" address="Kazimiye Mh. 59860 corlu,Tekirdag, Turkiye" latitude="41.158624" longitude="27.810109" capacity="5300" city="59" country="90" typeId="1" />
     <Place placeId="76" refPlaceId="38" name="Edebali" address="Ertugrulgazi Mh. 11040 Bilecik, Turkiye" latitude="40.134889" longitude="29.977838" capacity="5150" city="11" country="90" typeId="1" />
@@ -91,7 +91,7 @@
     <Place placeId="90" refPlaceId="182" name="sanliurfa 11 Nisan" address="Bamyasuyu Mh.63100Sanliurfa, Turkiye" latitude="37.163856" longitude="38.794586" capacity="4559" city="55" country="90" typeId="1" />
     <Place placeId="91" refPlaceId="186" name="Erdemir Eregli" address="Suat Basol Sk Muftu Mh., 67300 Eregli,Zonguldak, Turkiye" latitude="41.272969" longitude="31.426284" capacity="4500" city="67" country="90" typeId="1" />
     <Place placeId="92" refPlaceId="33" name="Nazilli Ilce" address="Kurtulus Mh., 09800 Nazilli,Aydin, Turkiye" latitude="37.919716" longitude="28.332367" capacity="4500" city="8" country="90" typeId="1" />
-    <Place placeId="93" refPlaceId="53" name="cankiri Ataturk" address="Abdulhalik Renda Mh., 18100 cankiri, Turkiye" latitude="40.596016" longitude="33.618078" capacity="4410" city="17" country="90" typeId="1" />
+    <Place placeId="93" refPlaceId="53" name="Cankiri Ataturk" address="Abdulhalik Renda Mh., 18100 cankiri, Turkiye" latitude="40.596016" longitude="33.618078" capacity="4410" city="17" country="90" typeId="1" />
     <Place placeId="94" refPlaceId="88" name="Bahcelievler Il ozel Idare" address="Fevzicakmak Mh., 34194 Bahcelievler,Istanbul, Turkiye" latitude="40.99684" longitude="28.832202" capacity="4350" city="34" country="90" typeId="1" />
     <Place placeId="95" refPlaceId="173" name="Tekirdag Namik Kemal" address="100. Yil Mh., 59100 Tekirdag, Turkiye" latitude="40.965795" longitude="27.501408" capacity="4300" city="59" country="90" typeId="1" />
     <Place placeId="96" refPlaceId="12" name="Ankara Ostim" address="Ostim Mh. 06900 Ankara, Turkiye" latitude="39.981634" longitude="32.741221" capacity="4271" city="6" country="90" typeId="1" />
@@ -115,7 +115,7 @@
     <Place placeId="114" refPlaceId="94" name="Gaziosmanpasa" address="Merkez Mh., 34245 Gaziosmanpasa,Istanbul Province, Turkey" latitude="41.060877" longitude="28.908548" capacity="2850" city="34" country="90" typeId="1" />
     <Place placeId="115" refPlaceId="236" name="BafraSehir" address="55400 Bafra,Samsun" latitude="41.572596" longitude="35.911088" capacity="2800" city="55" country="90" typeId="1" />
     <Place placeId="116" refPlaceId="190" name="Aksaray Ataturk" address="Coglaki Mh., 68100 Aksaray,Aksaray Province, Turkey" latitude="38.372768" longitude="34.037211" capacity="2750" city="68" country="90" typeId="1" />
-    <Place placeId="117" refPlaceId="194" name="B.sukru Altinisik" address="D765 Keskin,Kirikkale, Turkey" latitude="39.680451" longitude="33.617703" capacity="2750" city="79" country="90" typeId="1" />
+    <Place placeId="117" refPlaceId="194" name="B.sukru Altinisik" address="D765 Keskin,Kirikkale, Turkey" latitude="39.680451" longitude="33.617703" capacity="2750" city="71" country="90" typeId="1" />
     <Place placeId="118" refPlaceId="41" name="Bitlis 8 Agustos" address="Tas Mh., 13000 Bitlis,Bitlis Province, Turkey" latitude="38.408045" longitude="42.106079" capacity="2550" city="13" country="90" typeId="1" />
     <Place placeId="119" refPlaceId="15" name="cubuk Ilce" address="Imam Hatip Cd Cumhuriyet Mh., 06760 cubuk,Ankara, Turkey" latitude="40.231028" longitude="33.028974" capacity="2500" city="6" country="90" typeId="1" />
     <Place placeId="120" refPlaceId="101" name="Eyup" address="Hz. Halid Blv 24-26 Islambey Mh., 34050 Istanbul, Turkey" latitude="41.047455" longitude="28.929867" capacity="2500" city="34" country="90" typeId="1" />
@@ -131,7 +131,7 @@
     <Place placeId="130" refPlaceId="132" name="17 Agustos" address="Nihat Erim Cd cinarli Mh., 41010 Derince,Kocaeli, Turkey" latitude="40.762451" longitude="29.852777" capacity="2000" city="41" country="90" typeId="1" />
     <Place placeId="131" refPlaceId="114" name="Bergama 14 Eylul" address="Kaymakam Kemal Bey Cd Maltepe Mh., 35700 Bergama,Izmir, Turkey" latitude="39.112922" longitude="27.175412" capacity="2000" city="35" country="90" typeId="1" />
     <Place placeId="132" refPlaceId="4" name="Genclik Stadi" address="Stadyum Cd Resatbey Mh., 01120 Adana, Turkey" latitude="36.998924" longitude="35.331039" capacity="2000" city="1" country="90" typeId="1" />
-    <Place placeId="133" refPlaceId="123" name="Kirklareli Ataturk" address="Karakas Mh. 39020 Kirklareli,Kirklareli Province, Turkey" latitude="41.730194" longitude="27.216117" capacity="2000" city="79" country="90" typeId="1" />
+    <Place placeId="133" refPlaceId="123" name="Kirklareli Ataturk" address="Karakas Mh. 39020 Kirklareli,Kirklareli Province, Turkey" latitude="41.730194" longitude="27.216117" capacity="2000" city="39" country="90" typeId="1" />
     <Place placeId="134" refPlaceId="90" name="Kucukkoy" address="Yeni Mh., 34250 Gaziosmanpasa,Istanbul Province, Turkey" latitude="41.075861" longitude="28.899316" capacity="2000" city="34" country="90" typeId="1" />
     <Place placeId="135" refPlaceId="145" name="Mardin Ataturk" address="" latitude="37.09131" longitude="41.211637" capacity="2000" city="47" country="90" typeId="1" />
     <Place placeId="136" refPlaceId="363" name="MenemenSehir" address="sht. Ali Kalmaz Cd 8-20 Esatpasa Mh., 35660 Menemen,Izmir, Turkey" latitude="38.601931" longitude="27.073746" capacity="2000" city="35" country="90" typeId="1" />
@@ -162,7 +162,7 @@
     <Place placeId="161" refPlaceId="49" name="Kestel Ilce" address="Yeni Mh., 16450 Kestel,Bursa, Turkiye" latitude="40.190848" longitude="29.20917" capacity="250" city="16" country="90" typeId="1" />
     <Place placeId="162" refPlaceId="5343" name="Akdeniz universitesi Stadi" address="Pinarbasi Mh., 07100 Antalya, Turkiye" latitude="36.893951" longitude="30.64677" capacity="" city="7" country="90" typeId="1" />
     <Place placeId="163" refPlaceId="3619" name="Alsancak Stadi" address="Umurbey Mh., 35480 Konak,Izmir, Turkiye" latitude="38.437413" longitude="27.150629" capacity="" city="35" country="90" typeId="1" />
-    <Place placeId="164" refPlaceId="879" name="Baspinar Stadi" address="Gundogdu Mh., 71510 Kirikkale, Turkiye" latitude="39.839798" longitude="33.538578" capacity="15000" city="79" country="90" typeId="1" />
+    <Place placeId="164" refPlaceId="879" name="Baspinar Stadi" address="Gundogdu Mh., 71510 Kirikkale, Turkiye" latitude="39.839798" longitude="33.538578" capacity="15000" city="71" country="90" typeId="1" />
     <Place placeId="165" refPlaceId="473" name="Bs Bld Ataturk" address="Stad Sk ogretmen Evleri Mh., 42000 Konya, Turkey" latitude="37.865389" longitude="32.483295" capacity="" city="42" country="90" typeId="1" />
     <Place placeId="166" refPlaceId="3378" name="cetin Emec Stadi" address="Kartaltepe Mh., 34200 Bayrampasa,Istanbul, Turkiye" latitude="41.055606" longitude="28.895974" capacity="" city="34" country="90" typeId="1" />
     <Place placeId="167" refPlaceId="3812" name="Dr Fehmi oncel" address="" latitude="36.508713" longitude="30.515084" capacity="" city="7" country="90" typeId="1" />
@@ -178,7 +178,12 @@
     <Place placeId="177" refPlaceId="83" name="Koray Aydin" address="Akbelen Mh., 33220 Mersin, Turkiye" latitude="36.825106" longitude="34.599348" capacity="" city="33" country="90" typeId="1" />
     <Place placeId="178" refPlaceId="50" name="Orhangazi Ilce" address="Hurriyet Mh., 16800 Orhangazi,Bursa, Turkiye" latitude="40.482005" longitude="29.307361" capacity="" city="16" country="90" typeId="1" />
     <Place placeId="179" refPlaceId="4421" name="Mardan Antalyaspor" address="Antalya" latitude="36.907413" longitude="30.893866" capacity="0" city="07" country="90" typeId="1" />
-<Place placeId="180" refPlaceId="143" name="12 Subat" address="Maras" typeId="1" photos="143_800_600_1.jpg" latitude="41.865385" longitude="32.483264" capacity="0" city="46" country="90"/>
+<Place placeId="180" refPlaceId="143" name="12 Subat" address="Maras" typeId="1" photos="143_800_600_1.jpg" latitude="37.57417" longitude="36.923482" capacity="0" city="46" country="90"/>
 <Place placeId="181" refPlaceId="176" name="Akcaabat Fatih" address="Trabzon" typeId="1" photos="473_800_600_1.jpg" latitude="41.01747" longitude="39.584277" capacity="0" city="61" country="90"/>
-
+<Place placeId="182" refPlaceId="334" name="Kirikhan Ilce" address="Hatay" typeId="1" photos="473_800_600_1.jpg" latitude="36.492866" longitude="36.368539" capacity="0" city="31" country="90"/>
+<Place placeId="183" refPlaceId="5372" name="Esenyurt Necmi Kadioglu" address="Esenyurt, Istanbul" typeId="1" photos="473_800_600_1.jpg" latitude="41.024338" longitude="28.69778" capacity="0" city="34" country="90"/>
+<Place placeId="184" refPlaceId="19" name="Polatli Ilce" address="Polatli, Ankara" typeId="1" photos="473_800_600_1.jpg" latitude="39.573551" longitude="32.143646" capacity="0" city="06" country="90"/>
+<Place placeId="185" refPlaceId="430" name="Reyhanli Tayfur Sokmen" address="Hatay" typeId="1" photos="473_800_600_1.jpg" latitude="36.288939" longitude="36.559896" capacity="0" city="31" country="90"/>
+<Place placeId="186" refPlaceId="2700" name="Oba" address="Alanya Oba" typeId="1" photos="473_800_600_1.jpg" latitude="36.288939" longitude="36.559896" capacity="0" city="7" country="90"/>
+<Place placeId="187" refPlaceId="124" name="8 Kasim Luleburgaz" address="Kirklareli" typeId="1" photos="473_800_600_1.jpg" latitude="41.403246" longitude="27.353468" capacity="0" city="39" country="90"/>
 </Places>

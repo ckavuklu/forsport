@@ -234,9 +234,9 @@ exports.populatedb = function(req, res) {
                     for(var i=0; i<arr.length; i++) {
                         var obje = arr[i]['$'];
                         Organization.update({
-			orgId : obje.orgID
+			orgId : obje.orgId
                             },{
-                            orgId : obje.orgID,
+                            orgId : obje.orgId,
                             name: obje.name
                         },{
                             upsert: true
@@ -391,7 +391,7 @@ exports.findAllSportEvents = function(req, res) {
                 $maxDistance: dist/111.2, 
                 $near: [lat,lon]
                 }
-            }).populate('hometeamId').populate('awayteamId').populate('eventTypeId').exec(function(err, pl) { 
+            }).populate('hometeamId').populate('awayteamId').populate('eventTypeId').populate('orgId').exec(function(err, pl) { 
 res.send({
 
             events: pl
@@ -413,7 +413,7 @@ res.send({
         }
     }).populate('eventTypeId',null,{
     'name' : searchToken
-}).populate('hometeamId').populate('awayteamId').exec(function(err, pl) { 
+}).populate('hometeamId').populate('awayteamId').populate('orgId').exec(function(err, pl) { 
     res.send({
         events: pl
     });
@@ -434,7 +434,7 @@ res.send({
         eventDescription:{
             $regex: new RegExp(searchString, 'gi')
         }
-    }).populate('placeId').populate('hometeamId').populate('awayteamId').populate('eventTypeId').exec(function(err, pl) { 
+    }).populate('placeId').populate('hometeamId').populate('awayteamId').populate('orgId').populate('eventTypeId').exec(function(err, pl) { 
     res.send({
         events: pl
     });
@@ -769,7 +769,7 @@ var eventInsert = function(arg, callback) {
         /*arg4: sportTypeId,arg3: awayTeamId, arg2: homeTeamId, arg1:place, arg0:object*/
         function(arg4,arg3,arg2,arg1,arg0, callb) {
 	 Organization.findOne({
-                orgId : arg0.orgId
+                orgId : arg0.orgID
                 },function(err, item) {
                 if(err)
                     console.log(err);

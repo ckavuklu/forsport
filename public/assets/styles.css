@@ -98,9 +98,9 @@ body {
 .data-list li.listSelected {
 	color:#000;
 	/*border-top:1px solid #094C99;*/
-	background-color: #00698C;
-  font-weight: bold;
-  /*background-image:url('images/more_disclosure_white.png');*/
+	background-color: #EEEEEE;
+  /*font-weight: bold;
+  background-image:url('images/more_disclosure_white.png');*/
 }
 
 .slideshow-overlay {
@@ -110,8 +110,8 @@ body {
     z-index: 3;
     left: 0;
     top: 0;
-    height: 200px;
-    width: 300px;
+    height: 100%;
+    width: 100%;
     background: url("images/bg-overlay-pattern.png") left top repeat
 }
 

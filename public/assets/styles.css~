@@ -13,7 +13,7 @@ textarea {
 }
 
 body {
-	position:absolute;
+	/*position:absolute;*/
 	top:0px;
 	bottom:0px;
 	left:0px;
@@ -81,45 +81,26 @@ body {
 
 .data-list-lightweight li,
 .data-list li {
+    display:block;
     cursor:pointer;
-    font-size:1em;
-	padding:1em;
-	padding-left:1em;
-	padding-right:1px;
-	display:block;
-	border-top:1px solid #CCC;
-	border-bottom:none;
+   /*font-size:1em;
+		padding:1em;
+		padding-left:1em;
+		padding-right:1px;
+		border-top:1px solid #CCC;*/
+		border-bottom:none;
     background-color: white;
-	
-    background-image:url('images/more_disclosure.png');
     background-position:right center;
     background-repeat:no-repeat;
 }
-
-.data-list a img {
-    cursor:pointer;
-    font-size:1em;
-	padding:1em;
-	padding-left:1em;
-	padding-right:1px;
-	display:block;
-	border-top:1px solid #CCC;
-	border-bottom:none;
-    background-color: white;
-	
-    background-image:url('images/more_disclosure.png');
-    background-position:right center;
-    background-repeat:no-repeat;
-}
-
 
 .data-list-lightweight li.listSelected,
 .data-list li.listSelected {
 	color:#000;
-	border-top:1px solid #094C99;
-	background-color: #00698C;
-    font-weight: bold;
-    background-image:url('images/more_disclosure_white.png');
+	/*border-top:1px solid #094C99;*/
+	background-color: #EEEEEE;
+  /*font-weight: bold;
+  background-image:url('images/more_disclosure_white.png');*/
 }
 
 .slideshow-overlay {
@@ -129,8 +110,8 @@ body {
     z-index: 3;
     left: 0;
     top: 0;
-    height: 200px;
-    width: 300px;
+    height: 100%;
+    width: 100%;
     background: url("images/bg-overlay-pattern.png") left top repeat
 }
 
@@ -151,7 +132,7 @@ body {
     left: 0px; /* Added Left Position */ 
     width:295px;
     position: absolute; /* Added Position */
-    top: 148px; /* Added Top Position */        
+    top: 168px; /* Added Top Position */        
     z-index: 2; /* Added Higher Z-Index Value from thumbnail div */
     padding-left: 5px; 
     overflow: hidden;
