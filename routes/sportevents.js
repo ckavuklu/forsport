@@ -4,7 +4,16 @@ var async = require('async');
 var sys = require('sys');
 
 var mongoose = require('mongoose'), Schema = mongoose.Schema;
-var db = mongoose.connect('mongodb://127.0.0.1:27017/test');
+
+
+// Here we find an appropriate database to connect to, defaulting to
+// localhost if we don't find one.  
+var uristring = 
+  process.env.MONGOLAB_URI || 
+  process.env.MONGOHQ_URL || 
+  'mongodb://127.0.0.1:27017/test';
+
+var db = mongoose.connect(uristring);
 
 /*Object Model*/
 var sportSchema = Schema({
