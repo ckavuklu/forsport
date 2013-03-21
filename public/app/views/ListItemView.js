@@ -21,14 +21,14 @@ window.ListItemView = Backbone.View.extend({
      
     performCheckin:function (e) {
     	e.stopPropagation();
-
+/*
 	var self = this;
-        console.log('checkin');
 
 	this.model.set({checkInCount: 8});
 	this.model.save();
 	self.render();
-/*        this.model.save({}, {
+        alert('render');
+        this.model.save({}, {
             success: function (model) {
                 self.render();
                 app.navigate('wines/' + model.id, false);

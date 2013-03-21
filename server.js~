@@ -5,6 +5,10 @@ fs = require("fs")
 var express = require('express');
 sportevents = require('./routes/sportevents.js');
 
+// The http server will listen to an appropriate port, or default to
+// port 5000.
+var theport = process.env.PORT || 3000;
+
 var app = express();
 var request = require('request');
 
@@ -124,5 +128,5 @@ function formatDistance( meters ) {
 }
 
 
-app.listen(3000);
+app.listen(theport);
 console.log('Listening on port 3000');

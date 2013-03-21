@@ -23,11 +23,12 @@ window.ListItemView = Backbone.View.extend({
     	e.stopPropagation();
 
 	var self = this;
-        console.log('checkin');
+	var model = this;
 
-	this.model.set({checkInCount: 8});
-	this.model.save();
+	this.set({checkInCount: 8});
+	this.save();
 	self.render();
+        alert('render');
 /*        this.model.save({}, {
             success: function (model) {
                 self.render();
