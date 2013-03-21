@@ -2,14 +2,14 @@ templates.searchView = "app/views/SearchView.html";
 
 window.SearchView = Backbone.View.extend({
 
-    title: "Searching...",
+    title: GeoWatcher.isValidLocation()?"Searching...":"Searching...GEBZE",
 
     initialize: function(options) {
 
         this.render();
         this.view = this.$el;
 
-        if(GeoWatcher.isValidLocation()) {
+        if(/*GeoWatcher.isValidLocation()*/) {
             var self = this;
             this.searchString = options.searchString;
 
@@ -24,10 +24,12 @@ window.SearchView = Backbone.View.extend({
 
             setTimeout(function(){SearchManager.search( self.searchString, self.onSearchResult, self.onSearchError );}, 801 );
         }
+	/*
         else {
             var view = new InvalidLocationView();
             window.viewNavigator.pushView( view );
         }
+	*/
     },
 
     events:{

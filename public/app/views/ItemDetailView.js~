@@ -9,7 +9,7 @@ window.ItemDetailView = Backbone.View.extend({
     initialize: function(options) {
     console.log('ItemDetailView:',this.model);
 
-        this.title = "Week: " + this.model.week;
+        this.title = "Checkin Count: " + this.model.checkInCount;
         this.template = _.template( templates.itemDetailView ),
         this.render();
         this.view = this.$el;
@@ -21,7 +21,7 @@ window.ItemDetailView = Backbone.View.extend({
         "click #mapImage":"getDirections",
         "click #website": "websiteClick"
     },
-    
+
     render:function (eventName) {
         this.model.mapSize = $(window).width();
         var model = this.model;

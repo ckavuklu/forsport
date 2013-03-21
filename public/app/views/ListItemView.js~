@@ -14,13 +14,68 @@ window.ListItemView = Backbone.View.extend({
     },  
     
     events:{
+   	"click button":"performCheckin"
+    },
+
+
+     
+    performCheckin:function (e) {
+    	e.stopPropagation();
+
+	var self = this;
+        console.log('checkin');
+
+	this.model.set({checkInCount: 8});
+	this.model.save();
+	self.render();
+/*        this.model.save({}, {
+            success: function (model) {
+                self.render();
+                app.navigate('wines/' + model.id, false);
+                utils.showAlert('Success!', 'Wine saved successfully', 'alert-success');
+            },
+            error: function () {
+                utils.showAlert('Error', 'An error occurred while trying to delete this item', 'alert-error');
+            }
+        });
+
+	this.onCheckinResult = function(result){
+                self.checkinResult(result);
+            }
+            this.onCheckinError = function(error){
+                self.checkinError(error);
+            }
+
+       SearchManager.checkin( e.target.id, self.onCheckinResult, self.onCheckinError ); 
+*/	
+    }
+    ,
+
+    
+    checkinResult: function(result) {
+	window.alert("SUCESS CALLBAKC: " + result);
+        try {
+            var jsonResult = JSON.parse(result);
+	    this.model = jsonResult;
+	    window.alert("SUCESS <2: " + jsonResult);
+	    this.trigger('render');
+        }
+        catch(e){
+            alert(e.toString())
+        }
+    },
+
+    checkinError: function(error) {
+       // console.log(error);
+	window.alert("ERROR CALLBACK:",error);
     },
     
     render:function (eventName) {
         var model = this.model;
-        //this.$el.addClass( "slideshow-overlay" );
+        this.$el.addClass( "span4" );
         this.$el.html( this.template( model ));
         this.$el.attr('id', model.placeId.placeId );
         return this;
     }
+  
 });

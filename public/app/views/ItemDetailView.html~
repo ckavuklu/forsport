@@ -18,6 +18,7 @@
     
 </div>
 
+	<p><button id="checkin" type="submit" class="btn btn-success">Check-In</button> <button id="share" class="btn btn-warning">Share</button></p>  
 
 <div class="gpu" style="background: white;">
     <div id='mapContainer' class="detailMapContainer" style='width:<%= mapSize %>px; height:<%= mapSize/2 %>px'>

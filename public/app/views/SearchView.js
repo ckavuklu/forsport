@@ -9,7 +9,7 @@ window.SearchView = Backbone.View.extend({
         this.render();
         this.view = this.$el;
 
-        if(GeoWatcher.isValidLocation()) {
+        if(/*GeoWatcher.isValidLocation()*/) {
             var self = this;
             this.searchString = options.searchString;
 
@@ -24,10 +24,12 @@ window.SearchView = Backbone.View.extend({
 
             setTimeout(function(){SearchManager.search( self.searchString, self.onSearchResult, self.onSearchError );}, 801 );
         }
+	/*
         else {
             var view = new InvalidLocationView();
             window.viewNavigator.pushView( view );
         }
+	*/
     },
 
     events:{

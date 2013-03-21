@@ -94,6 +94,8 @@ var organizationSchema = new Schema({
 var eventSchema = new Schema({
     week: String
     , 
+    checkInCount: { type: Number, default: 0 },
+
     matchId : String
     , 
     hometeamId: {
@@ -234,9 +236,9 @@ exports.populatedb = function(req, res) {
                     for(var i=0; i<arr.length; i++) {
                         var obje = arr[i]['$'];
                         Organization.update({
-			orgId : obje.orgID
+			orgId : obje.orgId
                             },{
-                            orgId : obje.orgID,
+                            orgId : obje.orgId,
                             name: obje.name
                         },{
                             upsert: true
@@ -391,7 +393,7 @@ exports.findAllSportEvents = function(req, res) {
                 $maxDistance: dist/111.2, 
                 $near: [lat,lon]
                 }
-            }).populate('hometeamId').populate('awayteamId').populate('eventTypeId').exec(function(err, pl) { 
+            }).populate('hometeamId').populate('awayteamId').populate('eventTypeId').populate('orgId').exec(function(err, pl) { 
 res.send({
 
             events: pl
@@ -413,7 +415,7 @@ res.send({
         }
     }).populate('eventTypeId',null,{
     'name' : searchToken
-}).populate('hometeamId').populate('awayteamId').exec(function(err, pl) { 
+}).populate('hometeamId').populate('awayteamId').populate('orgId').exec(function(err, pl) { 
     res.send({
         events: pl
     });
@@ -434,7 +436,7 @@ res.send({
         eventDescription:{
             $regex: new RegExp(searchString, 'gi')
         }
-    }).populate('placeId').populate('hometeamId').populate('awayteamId').populate('eventTypeId').exec(function(err, pl) { 
+    }).populate('placeId').populate('hometeamId').populate('awayteamId').populate('orgId').populate('eventTypeId').exec(function(err, pl) { 
     res.send({
         events: pl
     });
@@ -558,11 +560,31 @@ exports.addSportEvent = function(req, res) {
 exports.updateSportEvent = function(req, res) {
     var id = req.params.id;
     var sportEvent = req.body;
-    console.log('Updating event: ' + id);
-    console.log(JSON.stringify(sportEvent));
+    
+
+
+    console.log("searching for: ", id);
+
+    Event.update({
+                matchId : id
+                },{$inc: { checkInCount : 1}},{
+                upsert: true
+            }, function(err, data) {
+                if(err)
+                    console.log(err);
+            });
+
+    Event.findOne({matchId : id}, function(err, data) {
+                if(err)
+                    console.log(err);
+		console.log("result: ", data);		    
+	        res.send(data);
+            });
+
+/*
     db.collection('sportevents', function(err, collection) {
         collection.update({
-            '_id':new BSON.ObjectID(id)
+            'matchId':new BSON.ObjectID(id)
             }, sportevent, {
             safe:true
         }, function(err, result) {
@@ -576,7 +598,7 @@ exports.updateSportEvent = function(req, res) {
                 res.send(sportEvent);
             }
         });
-    });
+    });*/
 };
 
 exports.deleteSportEvent = function(req, res) {
@@ -769,7 +791,7 @@ var eventInsert = function(arg, callback) {
         /*arg4: sportTypeId,arg3: awayTeamId, arg2: homeTeamId, arg1:place, arg0:object*/
         function(arg4,arg3,arg2,arg1,arg0, callb) {
 	 Organization.findOne({
-                orgId : arg0.orgId
+                orgId : arg0.orgID
                 },function(err, item) {
                 if(err)
                     console.log(err);

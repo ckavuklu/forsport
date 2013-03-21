@@ -69,7 +69,7 @@ app.configure(function(){
 
 app.get('/sportevents', sportevents.findAllSportEvents);
 app.get('/populatedb', sportevents.populatedb);
-app.get('/sportevents/:id', sportevents.findById);
+//app.get('/sportevents/:id', sportevents.findById);
 //app.post('/sportevents', sportevents.addSportEvent);
 app.post('/sportevents/all', sportevents.populateSportEvents);
 app.put('/sportevents/:id', sportevents.updateSportEvent);

@@ -94,6 +94,8 @@ var organizationSchema = new Schema({
 var eventSchema = new Schema({
     week: String
     , 
+    checkInCount: { type: Number, default: 0 },
+
     matchId : String
     , 
     hometeamId: {
@@ -558,11 +560,31 @@ exports.addSportEvent = function(req, res) {
 exports.updateSportEvent = function(req, res) {
     var id = req.params.id;
     var sportEvent = req.body;
-    console.log('Updating event: ' + id);
-    console.log(JSON.stringify(sportEvent));
+    
+
+
+    console.log("searching for: ", id);
+
+    Event.update({
+                matchId : id
+                },{$inc: { checkInCount : 1}},{
+                upsert: true
+            }, function(err, data) {
+                if(err)
+                    console.log(err);
+            });
+
+    Event.findOne({matchId : id}, function(err, data) {
+                if(err)
+                    console.log(err);
+		console.log("result: ", data);		    
+	        res.send(data);
+            });
+
+/*
     db.collection('sportevents', function(err, collection) {
         collection.update({
-            '_id':new BSON.ObjectID(id)
+            'matchId':new BSON.ObjectID(id)
             }, sportevent, {
             safe:true
         }, function(err, result) {
@@ -576,7 +598,7 @@ exports.updateSportEvent = function(req, res) {
                 res.send(sportEvent);
             }
         });
-    });
+    });*/
 };
 
 exports.deleteSportEvent = function(req, res) {

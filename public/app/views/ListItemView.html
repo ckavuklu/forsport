@@ -17,11 +17,11 @@
 </div-->
 <div class="caption">  
               <p class="small"><%= orgId.name %></p>
-              <strong><%= hometeamId.name %> - <%= awayteamId.name %></strong>  
+              <strong><%= hometeamId.name %> - <%= awayteamId.name %>&nbsp;&nbsp;&nbsp;(<%= checkInCount %>)</strong>  
               <!--p><strong><%= hometeamId.name %> - <%= awayteamId.name %></strong></p-->  
               <p><%= moment(eventDate).calendar() %></p>
               <p><%= placeId.name %></p>
-              <p><a href="#" class="btn btn-success">Check-In</a> <a href="#" class="btn btn-warning">Share</a></p>  
+              <p><button id="<%=matchId%>" type="submit" class="btn btn-success">Check-In</button> <button href="#" class="btn btn-warning">Share</button></p>  
             </div>  
 <!--/div-->
 
