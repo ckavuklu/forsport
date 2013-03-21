@@ -9,7 +9,7 @@ window.SearchView = Backbone.View.extend({
         this.render();
         this.view = this.$el;
 
-        if(/*GeoWatcher.isValidLocation()*/) {
+        if(/*GeoWatcher.isValidLocation()*/true) {
             var self = this;
             this.searchString = options.searchString;
 

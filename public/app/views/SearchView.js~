@@ -2,7 +2,7 @@ templates.searchView = "app/views/SearchView.html";
 
 window.SearchView = Backbone.View.extend({
 
-    title: GeoWatcher.isValidLocation()?"Searching...":"Searching...GEBZE",
+    title: "Searching...",
 
     initialize: function(options) {
 
