@@ -1,7 +1,7 @@
 
 window.SearchManager = {
 
-    apiUrl:"http://127.0.0.1:3000/sportevents",
+    apiUrl:"http://dry-ravine-7867.herokuapp.com/sportevents",
     
     search:function (searchString, successCallback, errorCallback) {
 

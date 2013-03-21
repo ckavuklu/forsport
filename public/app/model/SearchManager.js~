@@ -1,10 +1,20 @@
 
 window.SearchManager = {
 
-    apiUrl:"http://127.0.0.1:3000/sportevents",
+    apiUrl:"http://dry-ravine-7867.herokuapp.com/sportevents",
     
     search:function (searchString, successCallback, errorCallback) {
-        var searchURL = this.apiUrl + "?q=" + encodeURIComponent(searchString) + "&ll=" + window.GeoWatcher.position.latitude + "," + window.GeoWatcher.position.longitude + "&d=" + new Date().getTime();
+
+    	var lat, lon;
+
+	if(GeoWatcher.isValidLocation()){
+		lat = window.GeoWatcher.position.latitude;
+		lon = window.GeoWatcher.position.longitude;
+	}else{
+		lat = "40.870673";
+		lon = "29.390681";
+	}
+        var searchURL = this.apiUrl + "?q=" + encodeURIComponent(searchString) + "&ll=" + lat + "," + lon + "&d=" + new Date().getTime();
 
 
         $.ajax({
