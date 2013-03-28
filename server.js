@@ -72,6 +72,7 @@ app.configure(function(){
 });
 
 app.get('/sportevents', sportevents.findAllSportEvents);
+app.get('/sportevents/tweets', sportevents.retrieveTweets);
 app.get('/populatedb', sportevents.populatedb);
 //app.get('/sportevents/:id', sportevents.findById);
 //app.post('/sportevents', sportevents.addSportEvent);

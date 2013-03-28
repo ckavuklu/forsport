@@ -58,6 +58,6 @@ window.SearchResultsView = Backbone.View.extend({
         
         var detailView = new ItemDetailView({model:poi})
         window.viewNavigator.pushView( detailView );
-       
+        
     }
 });

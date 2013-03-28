@@ -1,27 +1,7 @@
-<div class="gpu" style="background: white;">
-    <div class="header">
-        <h1>Location Details</h1>
-    </div>
-
-    <div class="padded">
-        <div class="green shadow pagination-centered">
-					<span5 id="hometeam" style="font-size:16px"><strong><%= hometeamId.name %></strong></span5>
-					<span2 id="eventName">
-				<img src="assets/images/teams/<%=hometeamId.refTeamId%>_120x120.jpg" style="width:40px;height:40px"/>
-				<strong>-</strong>
-				<img src="assets/images/teams/<%=awayteamId.refTeamId%>_120x120.jpg" style="width:40px;height:40px"/>
-				</span2>
-					<span5 id="awayteam" style="font-size:16px"><strong><%= awayteamId.name %></strong></span5>
-				</div>
-        <strong><%= placeId.name %></strong>
-    </div>
-    
+<div class="tweetview well" >
 </div>
-
-	<p><button id="checkin" type="submit" class="btn btn-success">Check-In</button> <button id="share" class="btn btn-warning">Share</button></p>  
-
 <div class="gpu" style="background: white;">
-    <div id='mapContainer' class="detailMapContainer" style='width:<%= mapSize %>px; height:<%= mapSize/2 %>px'>
+    <div id='mapContainer' class="detailMapContainer" style='width:<%= mapSize %>px; height:300px'>
         <div id="map<%= placeId.placeId %>" style="width:100%;height:100%;"></div>
     </div>
 

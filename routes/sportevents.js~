@@ -2,6 +2,7 @@ var fs = require('fs'),
 xml2js = require('xml2js');
 var async = require('async');
 var sys = require('sys');
+ntwitter = require('ntwitter');
 
 var mongoose = require('mongoose'), Schema = mongoose.Schema;
 
@@ -136,7 +137,9 @@ var eventSchema = new Schema({
     orgId     : {
         type: Schema.ObjectId, 
         ref: 'Organization'
-    }
+    },
+
+    tweets:   [String]
 });
  
 var Sport = mongoose.model('Sport', sportSchema);
@@ -367,6 +370,45 @@ var placeInsert = function(arg, callback) {
         );
 }
 
+exports.retrieveTweets = function(req, res) {
+    var hometeamtag = req.query["hometeamtag"];
+    var awayteamtag = req.query["awayteamtag"];
+    var eventtag = req.query["eventtag"];
+
+   var twit = new ntwitter({
+    consumer_key: '3Ao9nKhiGpDOHgPN9ig9aQ',
+    consumer_secret: 'h4zVh4b1POOejs6nLwEjJlEWH1deevFrE53Qu05Eys',
+    access_token_key: '307521206-ImCEM2EtT51QCbYF1dullzMBBL1g4e3SmBks0dCK',
+    access_token_secret: 'p9fjvGlg3tiGs7GbU1ln6qAHuqAPiM7Db5l5kvyDfg'
+  });
+
+   twit
+   .verifyCredentials(function (err, data) {
+    console.log("Verifying Credentials...");
+    if(err)
+      console.log("Verification failed : " + err)
+
+  }).search("\"" + hometeamtag + "\"" + ' OR ' + "\"" + awayteamtag + "\"" + ' OR ' + "\"" + eventtag + "\"", {
+    count: 5}, function(err, data) {
+
+
+    console.log("Searching:", hometeamtag + ' ' + awayteamtag  + ' ' + eventtag, "DATA:", JSON.stringify(data));
+
+  for (i=0;i<data.results.length;i++){
+     console.log(JSON.stringify(data.results[i].created_at) + " " + JSON.stringify(data.results[i].text));
+  }
+	 res.send({
+            tweets: data
+        });
+  }
+  
+);
+
+}
+
+
+
+
 
 exports.findAllSportEvents = function(req, res) {
     var searchString = req.query["q"];
@@ -377,6 +419,8 @@ exports.findAllSportEvents = function(req, res) {
     var nowDate = new Date();
     var nextDate = new Date();
     var returnObject = new Array();
+
+
 
     if (tokens.length == 2) {
         lat = parseFloat(tokens[0]);
@@ -403,10 +447,13 @@ exports.findAllSportEvents = function(req, res) {
                 $near: [lat,lon]
                 }
             }).populate('hometeamId').populate('awayteamId').populate('eventTypeId').populate('orgId').exec(function(err, pl) { 
-res.send({
 
+	    res.send({
             events: pl
         });
+
+
+
     });
 }else{
     nextDate.setDate(nowDate.getDate()+60);

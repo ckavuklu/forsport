@@ -33,7 +33,6 @@ function loadTemplates(callback) {
 
 function onTemplateLoaded(template, key) {
     
-    //alert( key + ": " + template);
     templates[ key ] = template;
     templates.loaded ++;
     

@@ -52,7 +52,7 @@ window.SearchResultsView = Backbone.View.extend({
             target=target.parent();
         }
         
-        target.addClass( "span4" );
+        target.addClass( "listSelected" );
         var id = target.attr( "id" );
         var poi = SearchManager.findPointById( id, this.model.events );
         

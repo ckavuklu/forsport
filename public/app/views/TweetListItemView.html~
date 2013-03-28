@@ -1,0 +1,6 @@
+<div class="thumbnail"> 
+<div class="caption">  
+    <p class="small"><%= model.text %></p>
+</div>  
+</div>
+

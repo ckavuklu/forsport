@@ -1,5 +1,4 @@
 templates.itemDetailView = "app/views/ItemDetailView.html";
-
 window.ItemDetailView = Backbone.View.extend({
 
     template:undefined,
@@ -7,12 +6,11 @@ window.ItemDetailView = Backbone.View.extend({
     title:"",
     
     initialize: function(options) {
-    console.log('ItemDetailView:',this.model);
-
         this.title = "Checkin Count: " + this.model.checkInCount;
         this.template = _.template( templates.itemDetailView ),
-        this.render();
         this.view = this.$el;
+        this.render();
+
     },  
     
     events:{
@@ -28,7 +26,19 @@ window.ItemDetailView = Backbone.View.extend({
         this.$el.html( this.template( model ));
         this.$el.css("background", "white");
 
-
+        var tweetView = new TweetView({model: this.model});
+	/*
+	window.viewNavigator = new ViewNavigator( '.tweetview' );	
+    	window.viewNavigator.pushView( tweetView );
+*/
+        //this.assign({'.tweetview'             : tweetView });
+	
+tweetView.setElement(this.$('.tweetview')).render();
+	
+/*
+        var tweetView = new TweetView({model: this.model});
+	this.$el.prepend(tweetView.render().el);
+*/
         //init map
 
         var self = this;
