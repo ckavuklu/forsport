@@ -1,20 +1,19 @@
 {
   "name": "forsport",
   "version": "0.0.0",
-  "description": "forsport\r ========",
+  "description": "forsport",
   "main": "server.js",
   "directories": {
     "doc": "doc"
   },
   "dependencies": {
-    "express": "~3.0.0rc3",
     "async": "~0.2.5",
-    "mongoose": "~3.5.6",
-    "request": "~2.11.0",
-    "mongodb": "~1.2.12",
     "factual-api": "~1.0.3",
-    "ntwitter": "~0.5.0",
-    "xml2js": "~0.2.4"
+    "express": "~3.0.0rc3",
+    "mongodb": "~1.2.12",
+    "mongoose": "~3.5.6",
+    "xml2js": "~0.2.4",
+    "request": "~2.11.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -25,6 +24,9 @@
     "type": "git",
     "url": "https://github.com/ckavuklu/forsport.git"
   },
-  "author": "",
+  "keywords": [
+    "sport"
+  ],
+  "author": "coolrise",
   "license": "BSD"
 }
