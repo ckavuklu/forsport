@@ -6,7 +6,7 @@
 <!--div class="photonail"-->
 <!--div class="slideshow-overlay"></div-->
 
-<img src="assets/images/generic-football.jpg"/>
+<img src="assets/images/teams/<%= hometeamId.teamId %>/1.jpg"/>
 	<!--div class="pineventname">
     <span ><strong><%= hometeamId.name %></strong></span>
     <div class="sporthr"/>
