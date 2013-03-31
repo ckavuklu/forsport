@@ -390,7 +390,6 @@ exports.retrieveTweets = function(req, res) {
 
   }).search("\"" + hometeamtag + "\"" + ' OR ' + "\"" + awayteamtag + "\"" + ' OR ' + "\"" + eventtag + "\"", {
     count: 5}, function(err, data) {
-    //console.log(JSON.stringify(data));
      res.send({
           tweets: data
       });
