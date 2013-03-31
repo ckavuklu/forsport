@@ -390,16 +390,10 @@ exports.retrieveTweets = function(req, res) {
 
   }).search("\"" + hometeamtag + "\"" + ' OR ' + "\"" + awayteamtag + "\"" + ' OR ' + "\"" + eventtag + "\"", {
     count: 5}, function(err, data) {
-
-
-    console.log("Searching:", hometeamtag + ' ' + awayteamtag  + ' ' + eventtag, "DATA:", JSON.stringify(data));
-
-  for (i=0;i<data.results.length;i++){
-     console.log(JSON.stringify(data.results[i].created_at) + " " + JSON.stringify(data.results[i].text));
-  }
-	 res.send({
-            tweets: data
-        });
+    console.log(JSON.stringify(data));
+     res.send({
+          tweets: data
+      });
   }
   
 );

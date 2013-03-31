@@ -15,7 +15,6 @@ window.TweetListItemView = Backbone.View.extend({
     
     render:function (eventName) {
         var model = this.model;
-        this.$el.addClass( "span12" );
         this.$el.html( this.template( model ));
         return this;
     }

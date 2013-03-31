@@ -13,7 +13,7 @@ textarea {
 }
 
 body {
-	/*position:absolute;*/
+	position:absolute;
 	top:0px;
 	bottom:0px;
 	left:0px;
@@ -24,6 +24,7 @@ body {
 	background-color:#555;
 }
 
+.twitter-tweet { min-width: 1024px !important; }
 
 
 .subtext {
@@ -157,6 +158,10 @@ body {
     clear:both; 
     height:2px; 
     width: 300px;
+}
+
+.caption h5 {
+   height: 40px;
 }
 
 

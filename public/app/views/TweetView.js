@@ -5,6 +5,8 @@ window.TweetView = Backbone.View.extend({
    template:undefined,
     
     title:"",
+     tagName: 'div',
+    id: 'tweet',
     
     initialize: function(options) {
     
@@ -13,13 +15,13 @@ window.TweetView = Backbone.View.extend({
 	var self = this;
 
 
-            this.onSearchResult = function(result){
-                self.searchResult(result);
-            }
-            this.onSearchError = function(error){
-                self.searchError(error);
-            }
+        this.onSearchResult = function(result){
+         self.searchResult(result);
+        };
 
+        this.onSearchError = function(error){
+          self.searchError(error);
+        };
 
 	setTimeout(function(){SearchManager.tweetSearch( options.model.hometeamId.name,options.model.awayteamId.name, options.model.placeId.name, self.onSearchResult, self.onSearchError );}, 801 );
 
@@ -37,19 +39,10 @@ window.TweetView = Backbone.View.extend({
 
 
      searchResult: function(result) {
-        //console.log(result);
         try {
 	    var jsonResult = JSON.parse(result);
-var view = new TweetResultsView({ model:jsonResult});
-	    
-/*
-            var view = new TweetResultsView({ model:jsonResult});
-		window.viewNavigator2 = new ViewNavigator( "#tweetview" );	
-    		window.viewNavigator2.pushView( view );
-*/
-
-view.setElement(this.$('.tweetresult')).render();
-
+	    var view = new TweetResultsView({ model:jsonResult});
+	    view.setElement($('.tab-content')).render();
         }
         catch(e){
             alert(e.toString())
@@ -57,11 +50,9 @@ view.setElement(this.$('.tweetresult')).render();
     },
 
     searchError: function(error) {
-       // console.log(error);
         var self = this;
 	    alert("ERROR");
     }
-
 }
 );
 

@@ -56,8 +56,8 @@ window.SearchResultsView = Backbone.View.extend({
         var id = target.attr( "id" );
         var poi = SearchManager.findPointById( id, this.model.events );
         
-        var detailView = new ItemDetailView({model:poi})
+        var detailView = new ItemDetailTabView({model:poi})
         window.viewNavigator.pushView( detailView );
-        
+
     }
 });

@@ -1,8 +1,8 @@
 
 window.SearchManager = {
 
-    apiUrl:"http://dry-ravine-7867.herokuapp.com/sportevents",
-    //apiUrl:"http://127.0.0.1:3000/sportevents",
+    //apiUrl:"http://dry-ravine-7867.herokuapp.com/sportevents",
+    apiUrl:"http://127.0.0.1:3000/sportevents",
 
     tweetSearch:function (homeTeamTag, awayTeamTag, eventTag, successCallback, errorCallback) {
     	var searchURL = this.apiUrl + "/tweets?hometeamtag=" + encodeURIComponent(homeTeamTag) + "&awayteamtag=" + encodeURIComponent(awayTeamTag) + "&eventtag=" + encodeURIComponent(eventTag);
