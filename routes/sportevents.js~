@@ -84,6 +84,8 @@ var teamSchema = new Schema({
     country : String
     , 
     website : String
+    ,
+    tweetSources: String
 });
 
 var organizationSchema = new Schema({
@@ -137,9 +139,8 @@ var eventSchema = new Schema({
     orgId     : {
         type: Schema.ObjectId, 
         ref: 'Organization'
-    },
+    }
 
-    tweets:   [String]
 });
  
 var Sport = mongoose.model('Sport', sportSchema);
@@ -390,7 +391,6 @@ exports.retrieveTweets = function(req, res) {
 
   }).search("\"" + hometeamtag + "\"" + ' OR ' + "\"" + awayteamtag + "\"" + ' OR ' + "\"" + eventtag + "\"", {
     count: 5}, function(err, data) {
-    console.log(JSON.stringify(data));
      res.send({
           tweets: data
       });
@@ -764,6 +764,7 @@ var teamInsert = function(arg, callback) {
                 sportTypeId : arg2, 
                 city:argO.city,
                 website:argO.website,
+		tweetSources:argO.tweetSources,
                 country:argO.country
                 },{
                 upsert: true

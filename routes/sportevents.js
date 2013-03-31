@@ -84,6 +84,8 @@ var teamSchema = new Schema({
     country : String
     , 
     website : String
+    ,
+    tweetSources: String
 });
 
 var organizationSchema = new Schema({
@@ -137,9 +139,8 @@ var eventSchema = new Schema({
     orgId     : {
         type: Schema.ObjectId, 
         ref: 'Organization'
-    },
+    }
 
-    tweets:   [String]
 });
  
 var Sport = mongoose.model('Sport', sportSchema);
