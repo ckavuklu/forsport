@@ -20,7 +20,7 @@ window.TweetResultsView = Backbone.View.extend({
         var template = _.template(templates.tweetResults);
         this.$el.css("background", "white");
         this.$el.html(template( {results:this.model.tweets.results} ));
-        var $list = this.$el.find("#list");
+        var $list = this.$el.find("#tweetlist");
 
         var self = this;
         var index = 1;

@@ -20,13 +20,11 @@ window.TweetResultsView = Backbone.View.extend({
         var template = _.template(templates.tweetResults);
         this.$el.css("background", "white");
         this.$el.html(template( {results:this.model.tweets.results} ));
-        var $list = this.$el.find("#list");
+        var $list = this.$el.find("#tweetlist");
 
         var self = this;
         var index = 1;
         _.each(this.model.tweets.results, function (tweet) {
-            poi.__index = index;
-            poi.__svgColor = window.POIUtil.getCalculatedColor(poi);
             $list.append(new TweetListItemView({model:tweet}).render().el);
             index += 1;
         }, this);

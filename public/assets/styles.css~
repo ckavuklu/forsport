@@ -24,7 +24,7 @@ body {
 	background-color:#555;
 }
 
-stwitter-tweet { width: 800px !important; }
+.twitter-tweet { width: 800px !important; }
 
 
 .subtext {
